@@ -9,12 +9,15 @@
 
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/quoteapp', { useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/quoteapp', { useUnifiedTopology: true })
 
-let db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function(){
-    console.log("we are connected")
+const db = mongoose.connection
+db.once('open', _ => {
+  console.log('Database is connected')
+})
+
+db.on('error', err => {
+  console.error('connection error:', err)
 })
 
 

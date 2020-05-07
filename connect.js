@@ -1,5 +1,5 @@
 
-//Denna konnektar med mongoose
+//Denna connectar med mongoose
 //(Denna koden kan ligga i app.js men är lite mer lättläst att ha det uppdelat)
 
 //Man ska se det som en trappa ned och upp som man skickar info. 
@@ -9,7 +9,7 @@
 
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/text', { useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/quoteapp', { useNewUrlParser: true})
 
 let db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))

@@ -1,13 +1,22 @@
-//Kommunicerar med databasen. 
-//Denna innehåller facit och alla verktyg för qoute objektet
+//Modell kommunicerar med databasen 
+//Facit och alla verktyg för kommunikationen till vårt Qoute objekt i databasen
 
-//så att vi kan använda mongoose
 var mongoose = require ('mongoose')
-var QouteSchema = mongoose.Schema
+var Schema = mongoose.Schema
 
-//refererar/knyter an till vårat qoute objekt
-let qouteSchema = new Schema ({
-content: string
-
-
+//Content och user = nycklar som representerar fälten i databasen 
+let qouteSchema = new Schema({
+    //true för att man ska få ett error om man postar tomt content
+    content: {
+        type: String, 
+        required: true
+    },
+    //Kopplar Qoute-modellen till sin Users id och modell
+    user: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    }
 })
+
+// exporterar modellen 'Qoute' och schemat qouteSchema
+module.exports = mongoose.model('Qoute', qouteSchema)

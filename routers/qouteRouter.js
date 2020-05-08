@@ -15,4 +15,4 @@ qouteRouter.delete(function ( req, res) { /* för att ta bort en qoute från dat
 
 // 2 endpoints på get: första sidan och när en user är inloggad. --get och rätt url
 // 1 endpoint på post, put, delete: sidan när en user är inloggad. --app.all?
-app.use '/', qouteRouter
+app.use( '/', qouteRouter)

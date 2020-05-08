@@ -16,17 +16,11 @@ let userSchema = new Schema({
     password: {
         type: String, 
         required: true
-    },
-    //Qoutes är en array för att en användare ska kunna posta flera qoute
-    //Kopplar User-modellen till sina Qoutes id och Qoute-modellen
-    qoutes: [{
-        type: Schema.Types.ObjectId, 
-        ref: 'Qoute'
-    }]
+    }
 })
 
 // exporterar modellen 'User' och schemat userSchema
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('user', userSchema)
 
 
 //TODO! 

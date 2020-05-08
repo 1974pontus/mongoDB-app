@@ -2,21 +2,42 @@
 //Koppling mellan app-resurs-dess endpoints(CRUD)
 
 const express = require('express')
-const app = express()
-
+const qouteModel = require('../models/qoute')
 const qouteRouter = express.Router()
 
 //Home page 
-qouteRouter.get( '/', function (req, res) { /* för att hämta alla qoutes i databasen till första sidan */})
+qouteRouter.get( '/', async function (req, res) { /* för att hämta alla qoutes i databasen till första sidan */
+    const qoutes = await qouteModel.find({})
+    console.log(qoutes)
+    res.json("list of qoutes")
+})
 
-//User page -app.all?
-qouteRouter.get( '/users/:userId', function (req, res) { /* för att hämta alla qoutes som tillhör en user när den är inloggad*/})
-qouteRouter.post('/users/:userId', function ( req, res) { /* för att lägga till en qoute i databasen när user är inloggad*/})
-qouteRouter.put( '/users/:userId/qoutes/:qouteId', function ( req, res) { /* för att redigera en qoute när user är inloggad*/})
-qouteRouter.delete( '/users/:userId/qoutes/:qouteId',function ( req, res) { /* för att ta bort en qoute när user är inloggad*/})
+//User page
+qouteRouter.get( '/user', function (req, res) { 
+    const qoutes = await qouteModel.find({/* find the users qoutes */})
+    console.log(qoutes)
+    res.json("list of qoutes")
+    /* för att hämta alla qoutes som tillhör en user när den är inloggad*/})
+
+qouteRouter.post('/', function ( req, res) { 
+    const qoutes = await qouteModel.find({})
+    console.log(qoutes)
+    res.json("list of qoutes")
+    /* secure: för att lägga till en qoute i databasen när user är inloggad*/})
+
+qouteRouter.put( '/:id', function ( req, res) { 
+    const qoutes = await qouteModel.find({})
+    console.log(qoutes)
+    res.json("list of qoutes")
+    /* secure: för att redigera en qoute när user är inloggad*/})
+
+qouteRouter.delete( '/:id',function ( req, res) { 
+    const qoutes = await qouteModel.find({})
+    console.log(qoutes)
+    res.json("list of qoutes")
+    /* secure: för att ta bort en qoute när user är inloggad*/})
 
 
-//module.exports = qouteRouter 
-// app.use(qouteRouter)
-app.use( '/', qouteRouter)
+module.exports = qouteRouter 
+
 

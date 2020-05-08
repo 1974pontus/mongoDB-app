@@ -1,8 +1,8 @@
 //Denna router middleware är för  user resursen/modellen och innehåller alla endpoints som den behöver
 //Koppling mellan app-resurs-dess endpoints(CRUD)
 
-
 const express = require('express')
+const userModel = require('../models/user')
 const app = express()
 
 const userRouter = express.Router()
@@ -12,4 +12,4 @@ userRouter.put(function ( req, res ) { /* ?? behöver vi denna, redigera en anv�
 userRouter.delete(function ( req, res ) { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */})
 
 
-app.use( '/', userRouter)
+module.exports = userRouter

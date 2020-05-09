@@ -54,6 +54,11 @@ body {
     background: #c4c4c4;
 }
 
+ul {
+    margin-top: 1rem;
+    padding: 0;
+}
+
 ul li {
     cursor: pointer;
     position: relative;

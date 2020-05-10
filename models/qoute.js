@@ -1,11 +1,11 @@
 //Modell kommunicerar med databasen 
 //Facit och alla verktyg för kommunikationen till vårt Qoute objekt i databasen
 
-var mongoose = require ('mongoose')
-var Schema = mongoose.Schema
+const mongoose = require ('mongoose')
+const Schema = mongoose.Schema
 
 //Content och user = nycklar som representerar fälten i databasen 
-let qouteSchema = new Schema({
+const qouteSchema = new Schema({
     //true för att man ska få ett error om man postar tomt content
     content: {
         type: String, 

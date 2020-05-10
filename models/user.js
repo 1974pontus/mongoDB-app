@@ -1,12 +1,12 @@
 //Modell kommunicerar med databasen 
 //Facit och alla verktyg för kommunikationen till vårt User objekt i databasen
 
-var mongoose = require ('mongoose')
-var Schema = mongoose.Schema
+const mongoose = require ('mongoose')
+const Schema = mongoose.Schema
 
 
 //Name, password och Qoutes = nycklar som representerar fälten i databasen
-let userSchema = new Schema({
+const userSchema = new Schema({
 //true för att man ska få ett error om man inte har anget ett unikt namn eller inte anget ett lösenord
     name: {
         type: String, 

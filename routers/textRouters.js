@@ -5,7 +5,9 @@
 //och sen upp igen
 const express = require('express')
 //-----This is where the reference to the our modules will be 
-//const model = require('../models/')
+//const modelQ = require('../models/qoute.js')
+//const modelU = require('../models/users')
+
 
 const router = express.Router()
 

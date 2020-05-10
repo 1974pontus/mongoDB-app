@@ -12,10 +12,13 @@ const PORT = 3000
 app.use(express.json())
 
 
+app.use('/users', userRouter)
+
+
 //use routers
 app.use('/qoutes', qouteRouter)
 //use routers
-app.use('/users', userRouter)
+
 
 
 

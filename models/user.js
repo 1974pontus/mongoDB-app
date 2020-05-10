@@ -1,6 +1,5 @@
 //Modell kommunicerar med databasen 
 //Facit och alla verktyg för kommunikationen till vårt User objekt i databasen
-
 var mongoose = require ('mongoose')
 var Schema = mongoose.Schema
 

@@ -48,3 +48,90 @@ function quoteSaver() {
       }
     }
   }
+
+
+
+  let cardContainer
+
+// skapar citatcards
+let createQuoteCard = (quotes) => {
+
+    let card = document.createElement('div');
+    card.className = 'card shadow cursor-pointer';
+
+    let cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    let brand = document.createElement('h5');
+    brand.innerText = 'Brand: ' + quotes.brand;
+    brand.className = 'card-brand';
+
+    cardBody.appendChild(brand);
+  
+    card.appendChild(cardBody);
+    return card
+}
+
+let initListOfquotess = (quotes) => {
+    if (cardContainer) {
+        document.getElementById('card-container').replaceWith(cardContainer);
+        return;
+    }
+    
+    cardContainer = document.getElementById('card-container');
+    quotes.forEach((quotes) => {
+        const card = createQuoteCard(quotes);
+        cardContainer.appendChild(card);
+    });
+};
+
+
+
+function getAllquotes() {
+    fetch("http://localhost:3000/api/quotess", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+    })
+        .then((response) => response.json())
+        .then((quotes) => {
+            console.log('success', quotes)
+            initListOfquotess(quotes);
+        })
+        .catch((error) => {
+            console.error('Error', error)
+        })
+}
+
+getAllquotes()
+
+function newquotes() {
+    let myForm = document.getElementById('myForm')
+    
+    myForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+        let formData = new FormData(myForm);
+    
+        const quotes = {}
+        for (const pair of formData.entries()) {
+            const [key, value] = pair
+            quotes[key] = value
+        }
+
+        fetch("http://localhost:3000/api/quotess", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(quotes)
+        }).then((response) => {
+            return response.json()
+        }).then((result) => {
+            console.log(result)
+        }).catch((error) => {
+            console.error('Error', error)
+        })
+    })
+}
+
+newquotes()

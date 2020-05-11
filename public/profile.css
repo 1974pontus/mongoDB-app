@@ -1,0 +1,87 @@
+body {
+    background-image: url(ostigtcitat.jpeg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-page {
+    width: 40rem;
+    padding: 10% 0 0;
+    margin: auto;
+}
+
+.profile-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(252, 180, 24, 0.685);
+    max-width: 40rem;
+    margin: 0 auto 100px;
+    padding: 4rem;
+    text-align: center;
+    border-radius: 1rem;
+
+}
+
+.profile-box input {
+    font-family: Arial, Helvetica, sans-serif;
+    outline: 1;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    border-radius: 2rem;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.profile-box button {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    border-radius: 2rem;
+    padding: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.profile-box button:hover,.profile-box button:active {
+    background: #c4c4c4;
+}
+
+ul {
+    margin-top: 1rem;
+    padding: 0;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    
+    font-size: 18px;
+    transition: 0.2s;
+    list-style: none;
+}
+
+/* Style the close button */
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: #f44336;
+    color: white;
+  }
+
+
+
+

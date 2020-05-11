@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best quotes</title>
     <link rel="stylesheet" href="index.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
@@ -15,17 +16,22 @@
           <input type="text" placeholder="password" />
           <input type="text" placeholder="email id" />
           <button>Create</button>
-          <p class="message">Already a member? <a href="#login">Login</a></p>
+          <p class="message">Already a member? <a href="#">Login</a></p>
         </form>
 
         <form class="login-form">
           <input type="text" placeholder="user name" />
           <input type="text" placeholder="password" />
-          <button>login</button>
-          <p class="message">Not a member? <a href="#join">Join</a></p>
+          <button onclick="window.location.href = 'profile.html';">login</button>
+          <p class="message">Not a member? <a href="#">Join</a></p>
         </form>
       </div>
     </div>
-    
+
+    <script>
+      $(".message a").click(function () {
+        $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+      });
+    </script>
   </body>
 </html>

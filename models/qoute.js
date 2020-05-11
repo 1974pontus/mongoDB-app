@@ -11,7 +11,7 @@ const qouteSchema = new Schema({
         type: String, 
         required: true
     },
-    //Kopplar Qoute-modellen till sin Users id och modell
+    //Kopplar Qoute-modellen till sin Users id och modell (collections)
     user: {
         type: Schema.Types.ObjectId, 
         ref: 'User'

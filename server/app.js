@@ -9,16 +9,13 @@ const express = require('express')
 
 const app = express()
 const PORT = 3000
+
+//all incoming data parses to json
 app.use(express.json())
 
-
+//use routers
 app.use('/users', userRouter)
-
-
-//use routers
 app.use('/quotes', quoteRouter)
-//use routers
-
 
 
 

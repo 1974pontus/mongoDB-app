@@ -6,10 +6,9 @@
 //Börjar från text.js ned till app.js sen connect.js (som pratar med mongoose->databasen) 
 //och sen upp igen
 
-
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/quoteapp', { useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/quoteapp', { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true})
 
 const db = mongoose.connection
 db.once('open', _ => {

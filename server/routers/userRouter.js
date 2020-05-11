@@ -20,16 +20,26 @@ elaine.save(function (err, elaine) {
     //      password: 'hello'
     //  })
 
-userRouter.get(async function ( req, res) {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
+userRouter.get('/', async function ( req, res) {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
     const user = await userModel.find({})
     console.log(user)
     res.json("list of users")
 })
-userRouter.post('api/users', async function ( req, res) {
-    console.log('the post user function')
-    res.json('user was created')
 
+
+userRouter.post('/api/users', (req, res) => {
+    console.log('the post user function' + req.body)
+    res.json('user was created')
     /* lägga till en användare till databasen när man skapar en användare/loggat in */})
+
+
+
+
+
+
+
+
+    
 userRouter.put(function ( req, res ) { /* ?? behöver vi denna, redigera en användare i databasen, ingår inte i uppgiften ?? */})
 userRouter.delete(function ( req, res ) { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */})
 

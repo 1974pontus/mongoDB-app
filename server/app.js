@@ -17,8 +17,10 @@ app.use(express.json())
 app.use('/users', userRouter)
 app.use('/quotes', quoteRouter)
 
-
-
+// 404 middleware
+app.use((req, res) => {
+    res.status(404).json('Resourse could not found')
+})
 
 app.listen(PORT, () => {
     console.log(`app is listening to PORT ${PORT}`)

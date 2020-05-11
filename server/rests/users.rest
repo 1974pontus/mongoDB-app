@@ -1,0 +1,37 @@
+//Show one users   ----/api/users/_id-number
+GET http://localhost:3000/api/quote/_id-number HTTP/1.1
+
+###
+
+//Show all users
+GET http://localhost:3000/api/users HTTP/1.1
+
+###
+
+//Add a user -------- /api/users
+POST http://localhost:3000/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Elaine",
+    "password": "123"
+}
+
+###
+
+//Uppdate one user /api/users/_id-number
+PUT http://localhost:3000/api/ HTTP/1.1
+content-type: application/json
+
+{
+    "id": "_id-number",
+    "user": "Elaine Benes",
+}
+
+###
+
+//Delete a user /api/users/_id-number
+DELETE http://localhost:3000/api/quote/_id-number HTTP/1.1
+content-type: application/json
+
+###

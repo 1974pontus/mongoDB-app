@@ -14,9 +14,10 @@ const qouteSchema = new Schema({
     //Kopplar Qoute-modellen till sin Users id och modell (collections)
     user: {
         type: Schema.Types.ObjectId, 
-        ref: 'User'
+        ref: 'user',
+        required: true
     }
 })
 
-// exporterar modellen 'Qoute' och schemat qouteSchema
-module.exports = mongoose.model('Qoute', qouteSchema)
+// exporterar kollektionen 'Qoute' och schemat qouteSchema
+module.exports = mongoose.model('qoute', qouteSchema)

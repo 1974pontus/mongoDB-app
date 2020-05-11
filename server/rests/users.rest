@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/qoutes/_id-number HTTP/1.1
+GET http://localhost:3000/api/quote/_id-number HTTP/1.1
 
 ###
 
@@ -30,7 +30,7 @@ content-type: application/json
 ###
 
 //Delete a user /api/users/_id-number
-DELETE http://localhost:3000/api/qoutes/_id-number HTTP/1.1
+DELETE http://localhost:3000/api/quote/_id-number HTTP/1.1
 content-type: application/json
 
 ###

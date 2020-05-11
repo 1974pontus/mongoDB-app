@@ -5,7 +5,7 @@ const mongoose = require ('mongoose')
 const Schema = mongoose.Schema
 
 
-//Name, password och Qoutes = nycklar som representerar fälten i databasen
+//Name, password och quote = nycklar som representerar fälten i databasen
 const userSchema = new Schema({
 //true för att man ska få ett error om man inte har anget ett unikt namn eller inte anget ett lösenord
     name: {

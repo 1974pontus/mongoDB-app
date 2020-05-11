@@ -1,39 +1,36 @@
+//Show one qoute /api/qoutes/_id-number
+GET http://localhost:3000/api/qoutes/_id-number HTTP/1.1
 
-GET http://localhost:3000/
-Content-Type: application/json
+###
+
+//Show all qoutes
+GET http://localhost:3000/api/qoutes HTTP/1.1
+
+###
+
+//Add a qoute -------- /api/qoutes
+POST http://localhost:3000/api/qoutes HTTP/1.1
+content-type: application/json
 
 {
-
+    "qoute": "the qoute",
 }
 
 ###
-GET http://localhost:3000/
-Content-Type: application/json
+
+//Uppdate one qoute /api/qoutes/_id-number
+PUT http://localhost:3000/api/ HTTP/1.1
+content-type: application/json
 
 {
-
+    "id": "_id-number",
+    "qoute": "I'll go if I don't have to walk",
 }
 
 ###
-POST http://localhost:3000/
-Content-Type: application/json
 
-{
-"content": "hej"
-}
-
-####
-PUT http://localhost:3000/
-Content-Type: application/json
-
-{
-
-}
+//Delete a qoute /api/qoutes/_id-number
+DELETE http://localhost:3000/api/qoutes/_id-number HTTP/1.1
+content-type: application/json
 
 ###
-DELETE http://localhost:3000/
-Content-Type: application/json
-
-{
-
-}

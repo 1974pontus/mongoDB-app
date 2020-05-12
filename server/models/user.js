@@ -19,6 +19,7 @@ const userSchema = new Schema({
     }
 })
 
+
 // exporterar modellen 'User' och schemat userSchema
 module.exports = mongoose.model('User', userSchema)
 

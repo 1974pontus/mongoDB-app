@@ -1,26 +1,26 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:27017/api/users/5eba6ffda6ec9c298ded422d HTTP/1.1
+GET http://localhost:3000/api/users/5eba6ffda6ec9c298ded422d HTTP/1.1
 
 ###
 
 //Show all users
-GET http://localhost:27017/api/users HTTP/1.1
+GET http://localhost:3000/api/users HTTP/1.1
 
 ###
 
 //Add a user -------- /api/users
-POST http://localhost:27017/api/users HTTP/1.1
+POST http://localhost:3000/api/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elaine",
-    "password": "123"
+    "name": "Elaine gdfgf",
+    "password": "1234"
 }
 
 ###
 
 //Uppdate one user /api/users/_id-number
-PUT http://localhost:27017/api/5eba6ffda6ec9c298ded422d HTTP/1.1
+PUT http://localhost:3000/api/5eba6ffda6ec9c298ded422d HTTP/1.1
 content-type: application/json
 
 {
@@ -31,7 +31,7 @@ content-type: application/json
 ###
 
 //Delete a user /api/users/_id-number
-DELETE http://localhost:27017/api/users/_id-number HTTP/1.1
+DELETE http://localhost:3000/api/users/_id-number HTTP/1.1
 content-type: application/json
 
 ###

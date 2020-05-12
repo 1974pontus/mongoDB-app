@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:27017/api/users/5eba6ffda6ec9c298ded422d HTTP/1.1
+GET http://localhost:27017/api/users/5eba9369c3d5d4328b021f9b HTTP/1.1
 
 ###
 

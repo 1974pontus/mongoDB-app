@@ -20,4 +20,4 @@ const quoteSchema = new Schema({
 })
 
 // exporterar kollektionen 'quote' och schemat quoteSchema
-module.exports = mongoose.model('quote', quoteSchema)
+module.exports = mongoose.model('Quote', quoteSchema)

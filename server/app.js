@@ -8,7 +8,7 @@ const express = require('express')
 
 
 const app = express()
-const PORT = 3000
+const PORT = 5500
 
 //all incoming data parses to json
 app.use(express.json())

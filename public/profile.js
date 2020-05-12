@@ -54,14 +54,14 @@ for (let i = 0; i < close.length; i++) {
 }
 
 
-let initListOfQuotes = (quotes) => {
+let initListOfQuotes = (quoteModel) => {
   if (cardContainer) {
       document.getElementById('card-container').replaceWith(cardContainer);
       return;
   }
   
   cardContainer = document.getElementById('card-container');
-  quotes.forEach((quote) => {
+  quoteModel.forEach((quote) => {
       const card = createQuoteCard(quote);
       cardContainer.appendChild(card);
   });
@@ -69,7 +69,7 @@ let initListOfQuotes = (quotes) => {
 
 
 function getAllQuotes() {
-  fetch("http://localhost:3000/api/quotes", {
+  fetch("http://localhost:27017/api/", {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
@@ -77,9 +77,9 @@ function getAllQuotes() {
 
   })
       .then((response) => response.json())
-      .then((quotes) => {
-          console.log('success', quotes)
-          initListOfQuotes(quotes);
+      .then((quoteModel) => {
+          console.log('success', quoteModel)
+          initListOfQuotes(quoteModel);
       })
       .catch((error) => {
           console.error('Error', error)
@@ -102,7 +102,7 @@ function newQuote() {
           quote[key] = value
       }
 
-      fetch("http://localhost:3000/api/quotes", {
+      fetch("http://localhost:27017/api/quotes", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(quote)

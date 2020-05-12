@@ -19,14 +19,15 @@ const testUser = new userModel ({
 //     httpOnly: true, //Vi får INTE nå kakan med javascript utan endas webbläsaren som kan få tillgång till kakan
 //     secure: false, //Kakan får endast lov att användas om man använder HTTPS om man sätter den till true) som är vanligt förekommande och kan användas för att öka säkerheten på kakorna.
 // }))
-
+/* 
   testUser.save(function (error, document) {
     if (error) console.error(error)
     console.log(document)
-  })
+  }) */
 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
-    try {
+    console.log("funkar det?")
+  try {
         const userModel = await userModel.find({})
         res.json(user);
     } catch (err) {
@@ -47,16 +48,20 @@ userRouter.get("/:name", async (req, res) => {
   });
 
 
-// userRouter.post('/api/users', (req, res) => {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10)
-//     users.push({
-//         name: req.body.name,
-//         password: hashedPassword
-//     })
-//     res.status(201).json(hashedPassword)
-    //console.log('the post user function' + req.body)
-   // res.json('user was created')
-    /* lägga till en användare till databasen när man skapar en användare/loggat in }) */
+userRouter.post('/', async (req, res) => {
+    /* const hashedPassword = bcrypt.hash(req.body.password, 10) */
+    try {
+    const newUser = new userModel({ name: req.body.name , password: req.body.password }) 
+    const savedUser = await newUser.save()
+    
+  /* res.send("hej") */
+  res.status(201).send(savedUser)
+  }
+  catch (err){
+    console.log(err)
+  }
+})
+/* lägga till en användare till databasen när man skapar en användare/loggat in }) */
 
 
 

@@ -10,8 +10,8 @@ const userSchema = new Schema({
 //true för att man ska få ett error om man inte har anget ett unikt namn eller inte anget ett lösenord
     name: {
         type: String, 
-        required: true,
-        unique: true
+        required: true
+        
     },
     password: {
         type: String, 

@@ -11,18 +11,26 @@
     <div class="profile-page">
       <div class="profile-box">
         <form class="quote-form">
-            <h1>Carpe diem!</h1>
-            <h2>Edit or create new quotes</h2>
+          <h1>Carpe diem!</h1>
+          <h2>Edit or create new quotes</h2>
           <input id="myQuotes" type="text" placeholder="Write quote" />
           <button onclick="quoteSaver()">Save quotes</button>
-            <ul id="quoteList">
-                <li>carpe diem</li>
-            </ul>
         </form>
+      </div>
 
-        
+      <div class="card" id="card-container">
+        <div class="profile-sidebar">
+          <img class="profile-img" src="https://i.pravatar.cc/116" alt="" />
+          
+        </div>
+        <div class="profile-main">
+          <h2 class="profile-name">Hasse Karlsson</h2>
+          <h3 class="profile-position">My favourite quotes</h3>
+          <ul id="quoteList" class="profile-body">
+            
+          </ul>
+        </div>
       </div>
     </div>
-
   </body>
 </html>

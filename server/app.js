@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 
 //use routers
-app.use('/users', userRouter)
-app.use('/quotes', quoteRouter)
+app.use('/api/users', userRouter)
+app.use('/api/quotes', quoteRouter)
 
 
 

@@ -9,12 +9,12 @@ const testQuote = new quoteModel ({
     content: 'If she can not find me, she can not break up with me.',
     user: {_id: "5eb970f3f870c3c976ef66d9"}
   })
-  
+  /* 
   testQuote.save(function (error, document) {
     if (error) console.error(error)
     console.log(document)
    
-  })
+  }) */
  
 //Home page 
 quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */

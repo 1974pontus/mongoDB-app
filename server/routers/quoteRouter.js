@@ -17,7 +17,7 @@ const testQuote = new quoteModel ({
   })
  
 //Home page 
-quoteRouter.get( '/', async function (req, res) { /* för att hämta alla quotes i databasen till första sidan */
+quoteRouter.get( '/quotes', async function (req, res) { /* för att hämta alla quotes i databasen till första sidan */
     const allQuotes = await quoteModel.find({})
     console.log(allQuotes + req.body + "hej")
     res.json("list of quotes")

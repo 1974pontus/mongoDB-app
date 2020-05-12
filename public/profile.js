@@ -1,6 +1,6 @@
 let quotes = ['carpe diem', 'efter regn kommer solsken', 'expelliarmo']
 let user = ['per karlsson']
-
+let cardContainer
 
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {
@@ -54,4 +54,67 @@ for (let i = 0; i < close.length; i++) {
 }
 
 
+let initListOfQuotes = (quotes) => {
+  if (cardContainer) {
+      document.getElementById('card-container').replaceWith(cardContainer);
+      return;
+  }
+  
+  cardContainer = document.getElementById('card-container');
+  quotes.forEach((quote) => {
+      const card = createQuoteCard(quote);
+      cardContainer.appendChild(card);
+  });
+};
 
+
+function getAllQuotes() {
+  fetch("http://localhost:3000/api/quotes", {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+
+  })
+      .then((response) => response.json())
+      .then((quotes) => {
+          console.log('success', quotes)
+          initListOfQuotes(quotes);
+      })
+      .catch((error) => {
+          console.error('Error', error)
+      })
+}
+
+
+getAllQuotes()
+
+function newQuote() {
+  let myForm = document.getElementById('myQuotes')
+  
+  myForm.addEventListener('submit', function (e) {
+      e.preventDefault()
+      let formData = new FormData(myForm);
+  
+      const quote = {}
+      for (const pair of formData.entries()) {
+          const [key, value] = pair
+          quote[key] = value
+      }
+
+      fetch("http://localhost:3000/api/quotes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(quote)
+      }).then((response) => {
+          return response.json()
+      }).then((result) => {
+          console.log(result)
+      }).catch((error) => {
+          console.error('Error', error)
+      })
+  })
+}
+
+
+newQuote()

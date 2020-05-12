@@ -6,7 +6,7 @@ content-type: application/json
 ###
 
 //Show all quotes
-GET http://localhost:27017/api/ HTTP/1.1
+GET http://localhost:3000/ HTTP/1.1
 content-type: application/json
 
 

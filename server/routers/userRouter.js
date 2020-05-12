@@ -26,9 +26,9 @@ const testUser = new userModel ({
   }) */
 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
-    console.log("funkar det?")
+    console.log("********SERENITY NOW!!!!!!")
   try {
-        const userModel = await userModel.find({})
+        const user = await userModel.find({})
         res.json(user);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -38,7 +38,7 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
 })
 
 // ONE USER
-userRouter.get("/:name", async (req, res) => {
+userRouter.get("/_id", async (req, res) => {
     try {
       const userModel = await userModel.findOne({ name: req.params.name });
       res.json(user);
@@ -63,16 +63,40 @@ userRouter.post('/', async (req, res) => {
 })
 /* lägga till en användare till databasen när man skapar en användare/loggat in }) */
 
-
-
-
-
-
-
-
     
-userRouter.put(function ( req, res ) { /* ?? behöver vi denna, redigera en användare i databasen, ingår inte i uppgiften ?? */})
-userRouter.delete(function ( req, res ) { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */})
+// userRouter.put("/:name", getUser, async( req, res ) =>{ /* ?? behöver vi denna, redigera en användare i databasen, ingår inte i uppgiften ?? */
+  
+//         console.log(res.user);
+      
+//         if (req.body.password === "") {
+//           req.body.password = res.user.password;
+//         }
+//         res.user.comparePassword(req.body.password, async function (err, isMatch) {
+//           if (err) throw err;
+      
+//           if (!isMatch) {
+//             res.user.password = req.body.password;
+//           }
+      
+//           res.user.name = req.body.name;
+//           res.user.admin = req.body.admin;
+      
+//           try {
+//             const updatedUser = await res.user.save();
+//             res.json(updatedUser);
+//           } catch (err) {
+//             res.status(400);
+//           }
+//       })
+// })
+userRouter.delete("/:id", async ( req, res, next ) => { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */
+    try {
+        await res.user.remove();
+        res.json(res.user);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
 
 
 module.exports = userRouter

@@ -19,7 +19,7 @@ app.use('/quotes', quoteRouter)
 
 // 404 middleware
 app.use((req, res) => {
-    res.status(404).json('Resourse could not found')
+    res.status(404).json('Resourse could not be found')
 })
 
 app.listen(PORT, () => {

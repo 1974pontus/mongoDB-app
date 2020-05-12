@@ -4,25 +4,21 @@ const express = require('express')
 const userModel = require('../models/user')
 const userRouter = express.Router()
 
-/* const elaine = new User({ name: 'Elaine', password: 'password123' });
-
-elaine.save(function (err, elaine) {
-    if (err) return console.error(err);
-  });  */
-
-    // async function saveUser (user) {
-    //      const user = new userModel(user)
-    //      return user.save()
-    //  }
- 
-    // saveUser({
-    //      name: 'Elaine Benes',
-    //      password: 'hello'
-    //  })
+//Create and save a testUser, is connected to testQuote
+const testUser = new userModel ({
+    name: 'George Costanza',
+    password: 'Bosco!'
+  })
+  
+  testUser.save(function (error, document) {
+    if (error) console.error(error)
+    console.log(document)
+  })
 
 userRouter.get('/', async function ( req, res) {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
     const user = await userModel.find({})
     console.log(user)
+    console.log('hej' + req.body)
     res.json("list of users")
 })
 

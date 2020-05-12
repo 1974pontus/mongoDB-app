@@ -9,7 +9,9 @@ const userRouter = require('./routers/userRouter')
 
 
 const app = express()
+
 const PORT = process.env.PORT || 3000
+
 
 //all incoming data parses to json
 app.use(express.json())

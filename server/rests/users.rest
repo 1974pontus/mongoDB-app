@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/users/5ebaa124d7897535ff07c210 HTTP/1.1
+GET http://localhost:3000/api/users/_1 HTTP/1.1
 
 ###
 
@@ -9,12 +9,22 @@ GET http://localhost:3000/api/users HTTP/1.1
 ###
 
 //Add a user -------- /api/users
-POST http://localhost:3000/api/users HTTP/1.1
+POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elaine heee",
+    "name": "david",
     "password": "1234"
+}
+
+###
+
+POST http://localhost:3000/api/users/createUser HTTP/1.1
+content-type: application/json
+
+{
+    "name": "kattis",
+    "password": "12345"
 }
 
 ###

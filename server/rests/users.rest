@@ -8,13 +8,27 @@ GET http://localhost:3000/api/users HTTP/1.1
 
 ###
 
+
+//Add a user -------- /api/usersPOST http://localhost:3000/api/users/createUser HTTP/1.1
+POST http://localhost:3000/api/users/createUser HTTP/1.1
+content-type: application/json
+
+{
+    "name": "claudia",
+    "password": "12345"
+}
+
+###
+###
+
 //Add a user -------- /api/users
 POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Kristen Bello",
+    "name": "Kristen Bell",
     "password": "fork"
 }
 
 ###
+

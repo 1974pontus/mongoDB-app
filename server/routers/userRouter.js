@@ -63,12 +63,12 @@ userRouter.post('/createUser', async (req, res) => {
       } 
     else {
       console.log("3")
-      return res.status(401).json('Wrong password')
+      return res.status(401).json('🙀pleace check your password')
       }
     }
     else {
       console.log("4")
-      return res.status(401).json('Wrong username')
+      return res.status(401).json('😱pleace check your username')
     }
     
   })
@@ -81,28 +81,31 @@ userRouter.post('/createUser', async (req, res) => {
 
 
 userRouter.post('/login', async (req, res) => {
+  //det sista argumentet 10 är saltet
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
   userModel.findOne({ name: req.body.name})
   .then(user => {
+
+    //TODOD Create session
     console.log(user)
     if(!user ) {
-        const newUser = new userModel({ name: req.body.name , password: hashedPassword })
-         
+        const newUser = new userModel({ 
+          name: req.body.name, 
+          password: hashedPassword 
+        })
+  
         newUser.save().then(savedUser => {
           res.status(201).send(savedUser)
-        } )
+        })
         .catch(err => {
-          console.log(err)
+          console.log(err) 
         })
         console.log(newUser)
         
-    } 
-    
-    else {
-      res.status(500).json({ message: "err.message" });
+    } else {
+      res.status(500).json({ message: "🤔Are you chore you have the right username or password" });
+      }
     }
-    
-  }
   )
   .catch(err => {
     console.log(err)

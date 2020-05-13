@@ -13,8 +13,8 @@ POST http://localhost:3000/api/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Leo dicaprio",
-    "password": "hello"
+    "name": "Kristen Bello",
+    "password": "fork"
 }
 
 ###

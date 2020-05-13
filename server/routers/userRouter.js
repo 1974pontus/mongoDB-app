@@ -18,6 +18,17 @@ const testUser = new userModel ({
     console.log(document)
   }) */
 
+  // ONE USER
+  userRouter.get("/_id", async (req, res) => {
+      try {
+        const userModel = await userModel.findOne({ name: req.params.id })
+        res.json(user)
+      } catch (err) {
+        res.status(500).json({ message: err.message })
+      }
+    });
+
+// GET ALL USERS 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
     console.log("********SERENITY NOW!!!!!!")
   try {
@@ -28,19 +39,10 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
     }
 })
 
-// ONE USER
-userRouter.get("/_id", async (req, res) => {
-    try {
-      const userModel = await userModel.findOne({ name: req.params.id })
-      res.json(user)
-    } catch (err) {
-      res.status(500).json({ message: err.message })
-    }
-  });
-
-
+//POST NEW USER
 userRouter.post('/', async (req, res) => {
     console.log("********CAN WE BCRYPT THIS PASSWORD!!!!!!")
+    
     try {
         //const hashedPassword = bcrypt.hash(req.body.password, 10) 
         const newUser = new userModel({ 

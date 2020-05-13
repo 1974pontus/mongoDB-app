@@ -16,20 +16,19 @@ const testQuote = new quoteModel ({
    
   }) */
  
-//Home page 
+//GET ALL QUOTES
 quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */
     try {
         const allQuotes = await quoteModel.find({})
-        console.log(allQuotes + req.body + "hej")
-    res.json({ allQuotes })
-    }
-    catch (error) {
+        res.json({ allQuotes })
+    } catch (error) {
+        res.status(500).json({ message: err.message });
         console.log(error)
     }
 })
 
 
- 
+//***************SE ÖVER NÄR VI HAR INLOGG*****************
 //User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
 quoteRouter.get( '/user', async function (req, res) { 
     const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ })
@@ -39,20 +38,41 @@ quoteRouter.get( '/user', async function (req, res) {
 })
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
+//POST NEW QUOTE
  quoteRouter.post('/', async function ( req, res) { 
-    const thisUser = await thisUser.findOne({/* the user that is logged in */})
-    
-    //Save quote
-    const addQuote = new quoteModel({
-        content:'',
-        user: thisUser._id
-    })
-    const savedQuotes = addQuote.save()
+     
+    //const thisUser = await thisUser.findOne({/* the user that is logged in */
+        
+    //})
+    try {
+     //Save quote
+     const newQuote = new quoteModel({
+        content:req.body.Quote,
+        user: req.body.user._id 
+    }) 
+        const savedQuotes = await newQuote.save()
 
-    //Link user to quote
-    thisUser.addQuote.push(savedQuotes._id)
-    await thisUser.save()
+    /* res.send("hej") */
+    res.status(201).send(savedQuotes)
+    }
+  catch (err){
+    console.log(err)
+  }
 })
+
+
+
+//     //Save quote
+//     const addQuote = new quoteModel({
+//         content:'',
+//         user: req.body._id && req.body.name
+//     })
+//     const savedQuotes = addQuote.save()
+
+//     //Link user to quote
+//     thisUser.addQuote.push(savedQuotes._id)
+//     await thisUser.save()
+// })
 
 /* secure: för att redigera en quote när user är inloggad */
 quoteRouter.put( '/:id', async function ( req, res) { 

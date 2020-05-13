@@ -18,8 +18,8 @@ POST http://localhost:3000/api/quotes HTTP/1.1
 content-type: application/json
 
 {
-    "quote": "I'll go if I don't have to walk"
-    //"content": "hej hej hej"
+    "content": "hej hej hej",
+    "user": "{_id: "5eb970f3f870c3c976ef66d9"}"
 }
 
 ###

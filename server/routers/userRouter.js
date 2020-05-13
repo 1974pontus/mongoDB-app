@@ -2,6 +2,7 @@
 //Koppling mellan app-resurs-dess endpoints(CRUD)
 const express = require('express')
 const userModel = require('../models/user')
+const bcrypt = require('bcrypt')
 //const cookieSession = require('cookie-session')
 //const bcrypt = require('bcrypt')
 const userRouter = express.Router()
@@ -39,25 +40,78 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
     }
 })
 
-//POST NEW USER
-userRouter.post('/', async (req, res) => {
-    console.log("********CAN WE BCRYPT THIS PASSWORD!!!!!!")
-    
+// ONE USER
+userRouter.get("/_id", async (req, res) => {
     try {
-        //const hashedPassword = bcrypt.hash(req.body.password, 10) 
-        const newUser = new userModel({ 
-            name: req.body.name, 
-            password: req.body.password 
-        }) 
-        const savedUser = await newUser.save()
-
-    /* res.send("hej") */
-    res.status(201).send(savedUser)
+      const userModel = await userModel.findOne({ name: req.params.name });
+      res.json(user);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
-  catch (err){
+  });
+
+
+//create a user
+userRouter.post('/createUser', async (req, res) => {
+  userModel.findOne({ name: req.body.name})
+  .then(user => {
+    if (user)
+    { console.log("1")
+      if (bcrypt.compareSync(req.body.password, user.password)){
+        console.log("2")
+        return res.json('Succesful login')
+      } 
+    else {
+      console.log("3")
+      return res.status(401).json('Wrong password')
+      }
+    }
+    else {
+      console.log("4")
+      return res.status(401).json('Wrong username')
+    }
+    
+  })
+  .catch(err => {
     console.log(err)
-  }
+  })
 })
+
+
+
+
+userRouter.post('/login', async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  userModel.findOne({ name: req.body.name})
+  .then(user => {
+    console.log(user)
+    if(!user ) {
+        const newUser = new userModel({ name: req.body.name , password: hashedPassword })
+         
+        newUser.save().then(savedUser => {
+          res.status(201).send(savedUser)
+        } )
+        .catch(err => {
+          console.log(err)
+        })
+        console.log(newUser)
+        
+    } 
+    
+    else {
+      res.status(500).json({ message: "err.message" });
+    }
+    
+  }
+  )
+  .catch(err => {
+    console.log(err)
+  })
+  /* const hashedPassword = bcrypt.hash(req.body.password, 10) */
+  
+})
+
+
 /* lägga till en användare till databasen när man skapar en användare/loggat in }) */
 
 

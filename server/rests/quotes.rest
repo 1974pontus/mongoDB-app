@@ -1,12 +1,12 @@
 //Show one quote /api/quotes/_id-number
-GET http://localhost:27017/api/quotes/_id-number HTTP/1.1
+GET http://localhost:3000/api/quotes/5eba7cb3156bf32bf4422ce4 HTTP/1.1
 content-type: application/json
 
 
 ###
 
 //Show all quotes
-GET http://localhost:3000/api HTTP/1.1
+GET http://localhost:3000/api/quotes HTTP/1.1
 content-type: application/json
 
 
@@ -18,24 +18,24 @@ POST http://localhost:3000/api/quotes HTTP/1.1
 content-type: application/json
 
 {
-    "content": "hej hej hej"
+    "quote": "I'll go if I don't have to walk"
+    //"content": "hej hej hej"
 }
 
 ###
 
 //Uppdate one quote /api/quotes/_id-number
-PUT http://localhost:27017/api/ HTTP/1.1
+PUT http://localhost:3000/api/quotes/5eba7c9d1350342be05e8671 HTTP/1.1
 content-type: application/json
 
 {
-    "id": "_id-number",
     "quote": "I'll go if I don't have to walk",
 }
 
 ###
 
 //Delete a quote /api/quotes/_id-number
-DELETE http://localhost:27017/api/quotes/_id-number HTTP/1.1
+DELETE http://localhost:3000/api/quotes/_id-number HTTP/1.1
 content-type: application/json
 
 ###

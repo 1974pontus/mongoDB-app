@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/users/5ebaa124d7897535ff07c210 HTTP/1.1
+GET http://localhost:3000/api/users/5ebba6830edf5d45fe06d089 HTTP/1.1
 
 ###
 
@@ -13,25 +13,8 @@ POST http://localhost:3000/api/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elaine heee",
-    "password": "1234"
+    "name": "Leo dicaprio",
+    "password": "hello"
 }
-
-###
-
-//Uppdate one user /api/users/_id-number
-PUT http://localhost:3000/api/5ebaa49218747737807f537b HTTP/1.1
-content-type: application/json
-
-{
- 
-    "user": "Elaine Benes",
-}
-
-###
-
-//Delete a user /api/users/_id-number
-DELETE http://localhost:3000/api/users/5ebaa124d7897535ff07c210 HTTP/1.1
-content-type: application/json
 
 ###

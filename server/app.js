@@ -2,10 +2,10 @@
 //Börjar från text.js ned till app.js sen connect.js (som pratar med mongoose->databasen) 
 //och sen upp igen
 require('./connect')
+const cors = require('cors')
 const express = require('express')
 const quoteRouter = require('./routers/quoteRouter')
 const userRouter = require('./routers/userRouter')
-
 
 
 const app = express()
@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 3000
 
 //all incoming data parses to json
 app.use(express.json())
+
+app.use(cors())
 
 //use routers
 app.use('/api/users', userRouter)

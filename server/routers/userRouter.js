@@ -38,7 +38,7 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
 })
 
 // ONE USER
-userRouter.get("/_id", async (req, res) => {
+userRouter.get("/users/_id", async (req, res) => {
     try {
       const userModel = await userModel.findOne({ name: req.params.name });
       res.json(user);

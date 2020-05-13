@@ -1,6 +1,5 @@
-let quotes = ['carpe diem', 'efter regn kommer solsken', 'expelliarmo']
-let user = ['per karlsson']
-let cardContainer
+
+let initQuoteList
 
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {
@@ -9,7 +8,7 @@ function quoteSaver() {
   let inputValue = document.getElementById("myQuotes").value;
   let t = document.createTextNode(inputValue);
   console.log(inputValue)
-  
+
   li.appendChild(t);
   if (inputValue === '') {
     alert("You must write something!");
@@ -25,7 +24,7 @@ function quoteSaver() {
   li.appendChild(span);
 
   for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+    close[i].onclick = function () {
       let div = this.parentElement;
       div.style.display = "none";
     }
@@ -41,7 +40,7 @@ for (i = 0; i < myNodelist.length; i++) {
   span.className = "close";
   span.appendChild(txt);
   myNodelist[i].appendChild(span);
- }
+}
 
 // Click on a close button to hide the current list item
 let close = document.getElementsByClassName("close");
@@ -55,35 +54,36 @@ for (let i = 0; i < close.length; i++) {
 
 
 let initListOfQuotes = (quoteModel) => {
-  if (cardContainer) {
-      document.getElementById('card-container').replaceWith(cardContainer);
-      return;
+  if (initQuoteList) {
+    document.getElementById('init-quoteList').replaceWith(initQuoteList);
+    console.log('???', quoteModel)
+    return;
   }
-  
-  cardContainer = document.getElementById('card-container');
-  quoteModel.forEach((quote) => {
-      const card = createQuoteCard(quote);
-      cardContainer.appendChild(card);
+
+  initQuoteList = document.getElementById('init-quoteList');
+  Object.keys(quoteModel).forEach((key) => {
+    const li = quoteSaver(quoteModel[key]);
+    initQuoteList.appendChild(li);
   });
 };
 
 
 function getAllQuotes() {
-  fetch("http://localhost:27017/api/", {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-      },
+  fetch("http://localhost:3000/api/quotes", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
 
   })
-      .then((response) => response.json())
-      .then((quoteModel) => {
-          console.log('success', quoteModel)
-          initListOfQuotes(quoteModel);
-      })
-      .catch((error) => {
-          console.error('Error', error)
-      })
+    .then((response) => response.json())
+    .then((quoteModel) => {
+      console.log('success', quoteModel)
+      initListOfQuotes(quoteModel);
+    })
+    .catch((error) => {
+      console.error('Error', error)
+    })
 }
 
 
@@ -91,28 +91,28 @@ getAllQuotes()
 
 function newQuote() {
   let myForm = document.getElementById('myQuotes')
-  
-  myForm.addEventListener('submit', function (e) {
-      e.preventDefault()
-      let formData = new FormData(myForm);
-  
-      const quote = {}
-      for (const pair of formData.entries()) {
-          const [key, value] = pair
-          quote[key] = value
-      }
 
-      fetch("http://localhost:27017/api/quotes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(quote)
-      }).then((response) => {
-          return response.json()
-      }).then((result) => {
-          console.log(result)
-      }).catch((error) => {
-          console.error('Error', error)
-      })
+  myForm.addEventListener('submit', function (e) {
+    e.preventDefault()
+    let formData = new FormData(myForm);
+
+    const quote = {}
+    for (const pair of formData.entries()) {
+      const [key, value] = pair
+      quote[key] = value
+    }
+
+    fetch("http://localhost:3000/api/quotes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(quote)
+    }).then((response) => {
+      return response.json()
+    }).then((result) => {
+      console.log(result)
+    }).catch((error) => {
+      console.error('Error', error)
+    })
   })
 }
 

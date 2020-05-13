@@ -1,12 +1,12 @@
 //Show one quote /api/quotes/_id-number
-GET http://localhost:27017/api/quotes/_id-number HTTP/1.1
+GET http://localhost:3000/api/quotes/_id-number HTTP/1.1
 content-type: application/json
 
 
 ###
 
 //Show all quotes
-GET http://localhost:3000/api HTTP/1.1
+GET http://localhost:3000/api/quotes HTTP/1.1
 content-type: application/json
 
 
@@ -24,7 +24,7 @@ content-type: application/json
 ###
 
 //Uppdate one quote /api/quotes/_id-number
-PUT http://localhost:27017/api/ HTTP/1.1
+PUT http://localhost:3000/api/ HTTP/1.1
 content-type: application/json
 
 {
@@ -35,7 +35,7 @@ content-type: application/json
 ###
 
 //Delete a quote /api/quotes/_id-number
-DELETE http://localhost:27017/api/quotes/_id-number HTTP/1.1
+DELETE http://localhost:3000/api/quotes/_id-number HTTP/1.1
 content-type: application/json
 
 ###

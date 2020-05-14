@@ -3,6 +3,7 @@
 function getAllUsers() {
   fetch("http://localhost:3000/api/users", {
     method: 'GET',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -96,6 +97,7 @@ let initListOfQuotes = (quoteModel) => {
 function getAllQuotes() {
   fetch("http://localhost:3000/api/quotes", {
     method: 'GET',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },

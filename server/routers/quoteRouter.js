@@ -26,15 +26,31 @@ const testQuote = new quoteModel ({
 //***************SE ÖVER NÄR VI HAR INLOGG*****************
 //User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
 quoteRouter.get( '/', async function (req, res) { 
-  console.log(req)  
+  //checks if there is a logged in user
+  try {
+      if(req.session.user) {
+        
+        res.send({user: req.session.user.id})
+        console.log("user:" + user)
+      }  
+        //if there is no user logged in
+      else{
+        res.send({user: false})
+      }
+    } 
+  catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
   //const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ 
     
     
     //})
     // const usersQuotes = await Quote.find({ _id: thisUser._id })
     // console.log(usersQuotes)
-    res.send(" hello")
-})
+   
+
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
 

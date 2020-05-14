@@ -38,6 +38,7 @@ const testUser = new userModel ({
       }
     })
 
+    //check if you are logged in
     userRouter.get("/authenticate", async (req, res) => {
       try {
           if(req.session.user) {

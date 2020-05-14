@@ -13,8 +13,8 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia pontus",
-    "password": "1234"
+    "name": "Pheobe Buffehhj",
+    "password": "smelly catbn"
 }
 
 ###
@@ -23,8 +23,8 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia pontu",
-    "password": "1234"
+    "name": "Pheobe Buffe",
+    "password": "smelly cat"
 }
 
 ###
@@ -36,8 +36,8 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elaine",
-    "password": "123"
+    "name": "Pheobe Buffe",
+    "password": "smelly cat"
 }
 
 ###

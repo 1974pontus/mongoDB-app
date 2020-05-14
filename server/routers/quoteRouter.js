@@ -3,38 +3,37 @@
 const express = require('express')
 const quoteModel = require('../models/quote')
 const quoteRouter = express.Router()
+const cookieSession = require('cookie-session')
 
 //Create and save a testQuote, is connected to testUser
 const testQuote = new quoteModel ({
     content: 'If she can not find me, she can not break up with me.',
     user: {_id: "5eb970f3f870c3c976ef66d9"}
   })
-  /* 
-  testQuote.save(function (error, document) {
-    if (error) console.error(error)
-    console.log(document)
-   
-  }) */
  
 //GET ALL QUOTES
-quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */
-    try {
-        const allQuotes = await quoteModel.find({})
-        res.json({ allQuotes })
-    } catch (error) {
-        res.status(500).json({ message: err.message });
-        console.log(error)
-    }
-})
+// quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */
+//     try {
+//         const allQuotes = await quoteModel.find({})
+//         res.json({ allQuotes })
+//     } catch (error) {
+//         res.status(500).json({ message: err.message });
+//         console.log(error)
+//     }
+// })
 
 
 //***************SE ÖVER NÄR VI HAR INLOGG*****************
 //User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
-quoteRouter.get( '/user', async function (req, res) { 
-    const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ })
-    const usersQuotes = await Quote.find({ _id: thisUser._id })
-    console.log(usersQuotes)
+quoteRouter.get( '/', async function (req, res) { 
+  console.log(req)  
+  //const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ 
     
+    
+    //})
+    // const usersQuotes = await Quote.find({ _id: thisUser._id })
+    // console.log(usersQuotes)
+    res.send(" hello")
 })
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/

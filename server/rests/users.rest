@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/users/5ebd18ebd759e02996e261a2 HTTP/1.1
+GET http://localhost:3000/api/users/_id HTTP/1.1
 
 ###
 
@@ -39,6 +39,13 @@ content-type: application/json
     "name": "Pheobe Buffe",
     "password": "smelly cat"
 }
+
+###
+
+
+DELETE http://localhost:3000/api/users/logout HTTP/1.1
+content-type: application/json
+
 
 ###
 

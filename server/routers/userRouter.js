@@ -50,19 +50,20 @@ userRouter.get("/users/_id", async (req, res) => {
 
 
 //create a user
-userRouter.post('/createUser', async (req, res) => {
+userRouter.post('/login', async (req, res) => {
   userModel.findOne({ name: req.body.name})
+  //if we found a user in database
   .then(user => {
-    if (user)
-    { console.log("1")
+      if (user) { 
+      console.log("1")
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
         return res.json('Succesful login')
       } 
-    else {
-      console.log("3")
-      return res.status(401).json('Wrong password')
-      }
+      else {
+        console.log("3")
+        return res.status(401).json('Wrong password')
+      } 
     }
     else {
       console.log("4")
@@ -75,10 +76,7 @@ userRouter.post('/createUser', async (req, res) => {
   })
 })
 
-
-
-
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
   userModel.findOne({ name: req.body.name})
   .then(user => {
@@ -97,7 +95,7 @@ userRouter.post('/login', async (req, res) => {
     } 
     
     else {
-      res.status(500).json({ message: "err.message" });
+      res.status(500).json({ message: "This user already exist" });
     }
     
   }
@@ -105,8 +103,6 @@ userRouter.post('/login', async (req, res) => {
   .catch(err => {
     console.log(err)
   })
-  /* const hashedPassword = bcrypt.hash(req.body.password, 10) */
-  
 })
 
 

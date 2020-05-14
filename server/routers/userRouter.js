@@ -15,13 +15,7 @@ const testUser = new userModel ({
 
 //Prepare tamper-proof cookie
 //En middleweare för cookies
-userRouter.use(cookieSession({
-  secret: 'aVeryS3cr3tK3y', 
-  maxAge: 1000 * 10, // 10s **********detta bör ändras till 24 timmar*************** exempel expire: date
-  sameSite: 'strict', //(Kakan får endast användas från samma domän som den skickades till. Så ingen kan sno kakan och använda den) 
-  httpOnly: true, //(Vi får INTE nå kakan med javascript utan endas webbläsaren som kan få tillgång till kakan.
-  secure: false, //(Kakan får endast lov att användas om man använder HTTPS om man sätter den till true)
- }))
+
 /* 
   testUser.save(function (error, document) {
     if (error) console.error(error)
@@ -44,6 +38,21 @@ userRouter.use(cookieSession({
       }
     })
 
+    userRouter.get("/authenticate", async (req, res) => {
+      try {
+          if(req.session.user) {
+            res.send({user: req.session.user.name})
+        }  else{
+          //if(req.session.role === 'admin')
+          //const userModel = await userModel.findOne({ name: req.body.id })
+          res.send({user: false})
+        }
+      } catch (err) {
+        res.status(500).json({ message: err.message })
+      }
+    })
+      //return res.status(401).json('Oh no 👻This is not your account pleace login again')
+
 // GET ALL USERS 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
     console.log("********SERENITY NOW!!!!!!")
@@ -58,6 +67,7 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
 
 //LOGIN A USER
 userRouter.post('/login', async (req, res) => {
+  console.log('LoGGED IN USER*************', req.session.user)
   userModel.findOne({ name: req.body.name})
   .then(user => {
       if (user) { 
@@ -65,7 +75,6 @@ userRouter.post('/login', async (req, res) => {
       // Check if user already is logged in
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
-        req.session.username = user.name
         req.session.user = user
        
         // Check if user already is logged in
@@ -127,7 +136,7 @@ userRouter.post('/register', async (req, res) => {
 userRouter.delete("/logout",( req, res, next ) => { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */
     console.log("********SERENITY NOW!!!!!! AGAIN!!!!!!!!!")
     req.session = null
-    res.send('🙌you are now logged out')
+    res.send('🙌Done & Done u are logged out')
 })
 
 module.exports = userRouter

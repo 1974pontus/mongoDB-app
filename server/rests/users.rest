@@ -1,10 +1,14 @@
-//Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/users/_id HTTP/1.1
+# //Show one users   ----/api/users/_id-number
+# GET http://localhost:3000/api/users/_id HTTP/1.1
 
-###
+# ###
 
-//Show all users
-GET http://localhost:3000/api/users HTTP/1.1
+# //Show all users
+# GET http://localhost:3000/api/users HTTP/1.1
+
+# ###
+
+GET http://localhost:3000/api/users/ HTTP/1.1
 
 ###
 

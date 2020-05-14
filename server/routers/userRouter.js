@@ -4,7 +4,6 @@ const express = require('express')
 const userModel = require('../models/user')
 const bcrypt = require('bcrypt')
 //const cookieSession = require('cookie-session')
-//const bcrypt = require('bcrypt')
 const userRouter = express.Router()
 
 
@@ -13,6 +12,16 @@ const testUser = new userModel ({
     name: 'George Costanza',
     password: 'Bosco!'
 })
+
+// Prepare tamper-proof cookie
+// En middleweare för cookies
+// userRouter.use(cookieSession({
+//   secret: 'aVeryS3cr3tK3y', 
+//   maxAge: 1000 * 10, // 10s **********detta bör ändras till 24 timmar*************** exempel expire: date
+//   sameSite: 'strict', //(Kakan får endast användas från samma domän som den skickades till. Så ingen kan sno kakan och använda den) 
+//   httpOnly: true, //(Vi får INTE nå kakan med javascript utan endas webbläsaren som kan få tillgång till kakan.
+//   secure: false, //(Kakan får endast lov att användas om man använder HTTPS om man sätter den till true)
+//  }))
 /* 
   testUser.save(function (error, document) {
     if (error) console.error(error)
@@ -55,26 +64,26 @@ userRouter.get("/_id", async (req, res) => {
 userRouter.post('/createUser', async (req, res) => {
   userModel.findOne({ name: req.body.name})
   .then(user => {
-    if (user)
-    { console.log("1")
+    if (user) { console.log("1")
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
-        return res.json('Succesful login')
+        return res.json('🥳Succesful login 🚀')
+        // create session
+        //req.session.roles = user.name
       } 
-    else {
-      console.log("3")
-      return res.status(401).json('🙀pleace check your password')
+      else {
+        console.log("3")
+        return res.status(401).json('🙀pleace check your password')
       }
     }
-    else {
-      console.log("4")
-      return res.status(401).json('😱pleace check your username')
-    }
-    
-  })
-  .catch(err => {
-    console.log(err)
-  })
+      else {
+        console.log("4")
+        return res.status(401).json('😱pleace check your username')
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
 

@@ -14,20 +14,21 @@ POST http://localhost:3000/api/users/createUser HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia",
-    "password": "12345"
+    "name": "Pheobe",
+    "password": "smelly cat"
 }
 
 ###
-###
 
+
+//När man loggar in ska det finnas en Set-Cookie i response n*******
 //Add a user -------- /api/users
 POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Kristen Bell",
-    "password": "fork"
+    "name": "Elaine",
+    "password": "123"
 }
 
 ###

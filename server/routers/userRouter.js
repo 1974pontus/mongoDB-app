@@ -29,16 +29,17 @@ userRouter.use(cookieSession({
   }) */
 
   // ONE USER
-  userRouter.get("/_id", async (req, res) => {
-    if(!req.session.username) {
-      res.status(401).json('Oh no 👻This is not your account pleace login again')
-    }  
+  userRouter.get("/", async (req, res) => {
     try {
-        const userModel = await userModel.findOne({ name: req.body.id })
-        res.json(user)
-      } catch (err) {
-        res.status(500).json({ message: err.message })
+      if(!req.session.username) {
+        return res.status(401).json('Oh no 👻This is not your account pleace login again')
+        }  
+        else {const userModel = await userModel.findOne({ name: req.body.id })
+        res.json(user)}
       }
+    catch (err) {
+        res.status(500).json({ message: err.message })
+      } 
     });
 
 // GET ALL USERS 

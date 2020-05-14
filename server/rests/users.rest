@@ -1,5 +1,5 @@
 //Show one users   ----/api/users/_id-number
-GET http://localhost:3000/api/users/_1 HTTP/1.1
+GET http://localhost:3000/api/users/5ebd18ebd759e02996e261a2 HTTP/1.1
 
 ###
 
@@ -13,8 +13,8 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pheobe Buffehhj",
-    "password": "smelly catbn"
+    "name": "katt",
+    "password": "katt"
 }
 
 ###
@@ -23,8 +23,8 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pheobe Buffe",
-    "password": "smelly cat"
+    "name": "katt",
+    "password": "katt"
 }
 
 ###

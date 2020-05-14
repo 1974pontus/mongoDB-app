@@ -129,6 +129,7 @@ function newQuote() {
 
     fetch("http://localhost:3000/api/quotes", {
       method: "POST",
+      credentials: 'include',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(quote)
     }).then((response) => {

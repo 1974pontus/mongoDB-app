@@ -1,4 +1,3 @@
-
 // Get all users from server
 function getAllUsers() {
   fetch("http://localhost:3000/api/users", {
@@ -20,7 +19,7 @@ function getAllUsers() {
 getAllUsers()
 
 // Show the user´s name
-  let userName = 'Pontus Tahir'
+  let userName = 'Madonna'
   document.getElementById('user-name').innerHTML = userName
 
 

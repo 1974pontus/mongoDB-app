@@ -1,22 +1,4 @@
 
-function getAllUsers() {
-  fetch("http://localhost:3000/api/users", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-
-  })
-    .then((response) => response.json())
-    .then((userModel) => {
-      console.log('success', userModel)
-    })
-    .catch((error) => {
-      console.error('Error', error)
-    })
-}
-getAllUsers()
-
 // Get all users from server
 function getAllUsers() {
   fetch("http://localhost:3000/api/users", {
@@ -37,7 +19,7 @@ function getAllUsers() {
 getAllUsers()
 
 // Show the user´s name
-  let userName = userModel
+  let userName = 'Pontus Tahir'
   document.getElementById('user-name').innerHTML = userName
 
 
@@ -128,8 +110,6 @@ function getAllQuotes() {
     })
 }
 getAllQuotes()
-
-
 
 
 

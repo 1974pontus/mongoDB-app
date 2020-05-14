@@ -13,16 +13,18 @@
     <div class="login-page">
       <div class="form">
         <form id="register-form" class="register-form">
-          <input type="text" placeholder="user name" />
-          <input type="text" placeholder="password" />
-          <button>Create</button>
+          <input id="register-name" type="text" placeholder="user name" />
+          <input id="register-password" type="text" placeholder="password" />
+          <button onclick="newLoggedInUser()">Create</button>
           <p class="message">Already a member? <a href="#">Login</a></p>
         </form>
 
         <form id="login-form" class="login-form">
-          <input type="text" placeholder="user name" />
-          <input type="text" placeholder="password" />
-          <button onclick="window.location.href = 'profile.html';">login</button>
+          <input id="login-name" type="text" placeholder="user name" />
+          <input id="login-password" type="text" placeholder="password" />
+          <button onclick="login()">login</button>
+          <button class="home"><a href="profile.html">home</a></button>
+          
           <p class="message">Not a member? <a href="#">Join</a></p>
         </form>
       </div>

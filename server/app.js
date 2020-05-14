@@ -17,10 +17,11 @@ const PORT = process.env.PORT || 3000
 //all incoming data parses to json
 app.use(express.json())
 
+
 //specar olika proj (frontend http)
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5501'
+    origin: 'http://localhost:3000'
 }))
 
 app.use(cookieSession({

@@ -28,18 +28,21 @@ userRouter.use(cookieSession({
     console.log(document)
   }) */
 
+  //middlewear secure 
   // ONE USER
   userRouter.get("/_id", async (req, res) => {
-    if(!req.session.username) {
-      res.status(401).json('Oh no 👻This is not your account pleace login again')
-    }  
     try {
-        const userModel = await userModel.findOne({ name: req.body.id })
-        res.json(user)
+      if(!req.session.username) {
+        return res.status(401).json('Oh no 👻This is not your account pleace login again')
+    }  else{
+      //if(req.session.role === 'admin')
+      //const userModel = await userModel.findOne({ name: req.body.id })
+      return res.json(user) // med eller utan eller return res.json(user)
+    }
       } catch (err) {
         res.status(500).json({ message: err.message })
       }
-    });
+    })
 
 // GET ALL USERS 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
@@ -63,8 +66,9 @@ userRouter.post('/login', async (req, res) => {
       // Check if user already is logged in
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
-        req.session.userModel = user.name
+        req.session.username = user.name
         req.session.user = user
+       
         // Check if user already is logged in
         return res.json('🥳Succesful login 🚀')
         // create session
@@ -120,14 +124,10 @@ userRouter.post('/register', async (req, res) => {
 /* lägga till en användare till databasen när man skapar en användare/loggat in }) */
 
 //USER LOGGOUT
-userRouter.delete("/:id", async ( req, res, next ) => { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */
+userRouter.delete("/logout",( req, res, next ) => { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */
     console.log("********SERENITY NOW!!!!!! AGAIN!!!!!!!!!")
-    try {
-        const user = await userModel.deleteOne({ name: req.params.name });
-        res.json(user);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+    req.session = null
+    res.send('🙌you are now logged out')
 })
 
 module.exports = userRouter

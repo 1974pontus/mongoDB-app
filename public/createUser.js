@@ -39,11 +39,16 @@ function login() {
   let myPassword = document.getElementById('login-password')
   const request = new RequestPost()
   request.post('http://localhost:3000/api/users/login', { name: myName.value, password: myPassword.value })
-    .then(response => console.log(response.req.session.user)
-    
+    .then(response => console.log(response.req.session.user), 
+    //show the home button here
     )
     .catch(err => console.log(err))
 }
 
 
 
+//NEXT STEP. 
+//Work on the quotelist.js
+// 1. use the get call and se with user that is logged in. 
+// 2. try to get all the diffrent CRUDs for quotes to work, in small steps. 
+// ----> !!Check ms -bookshelf for help! 

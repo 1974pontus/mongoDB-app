@@ -2,12 +2,12 @@
 //Börjar från text.js ned till app.js sen connect.js (som pratar med mongoose->databasen) 
 //och sen upp igen
 require('./connect')
+const cors = require('cors')
 const express = require('express')
 const quoteRouter = require('./routers/quoteRouter')
 const userRouter = require('./routers/userRouter')
 const cors = require('cors')
 const cookieSession = require('cookie-session')
-
 
 
 const app = express()

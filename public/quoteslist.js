@@ -87,6 +87,7 @@ let initListOfQuotes = (quoteModel) => {
   initQuoteList = document.getElementById('init-quoteList');
   Object.keys(quoteModel).forEach((key) => {
     const li = quoteSaver(quoteModel[key]);
+    console.log('???', li)
     initQuoteList.appendChild(li);
   });
 };

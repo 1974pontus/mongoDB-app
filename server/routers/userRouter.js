@@ -61,10 +61,12 @@ userRouter.get("/_id", async (req, res) => {
 
 
 //create a user
-userRouter.post('/createUser', async (req, res) => {
+userRouter.post('/login', async (req, res) => {
   userModel.findOne({ name: req.body.name})
+  //if we found a user in database
   .then(user => {
-    if (user) { console.log("1")
+      if (user) { 
+      console.log("1")
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
         return res.json('🥳Succesful login 🚀')
@@ -86,11 +88,7 @@ userRouter.post('/createUser', async (req, res) => {
     })
 })
 
-
-
-
-userRouter.post('/login', async (req, res) => {
-  //det sista argumentet 10 är saltet
+userRouter.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
   userModel.findOne({ name: req.body.name})
   .then(user => {
@@ -119,8 +117,6 @@ userRouter.post('/login', async (req, res) => {
   .catch(err => {
     console.log(err)
   })
-  /* const hashedPassword = bcrypt.hash(req.body.password, 10) */
-  
 })
 
 

@@ -8,14 +8,23 @@ GET http://localhost:3000/api/users HTTP/1.1
 
 ###
 
-
-//Add a user -------- /api/usersPOST http://localhost:3000/api/users/createUser HTTP/1.1
-POST http://localhost:3000/api/users/createUser HTTP/1.1
+//Add a user -------- /api/users
+POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pheobe",
-    "password": "smelly cat"
+    "name": "claudia pontus",
+    "password": "1234"
+}
+
+###
+
+POST http://localhost:3000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "name": "claudia pontu",
+    "password": "1234"
 }
 
 ###

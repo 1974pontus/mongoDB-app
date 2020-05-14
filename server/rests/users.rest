@@ -17,8 +17,8 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pheobe Buffehhj",
-    "password": "smelly catbn"
+    "name": "Ross Geller",
+    "password": "Dino"
 }
 
 ###
@@ -27,8 +27,8 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pheobe Buffe",
-    "password": "smelly cat"
+    "name": "Ross Geller",
+    "password": "Dino"
 }
 
 ###

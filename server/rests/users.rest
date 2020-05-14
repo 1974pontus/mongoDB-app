@@ -13,8 +13,8 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia pontus",
-    "password": "1234"
+    "name": "Pheobe Buffehhj",
+    "password": "smelly catbn"
 }
 
 ###
@@ -23,25 +23,22 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia pontu",
-    "password": "1234"
+    "name": "Pheobe Buffe",
+    "password": "smelly cat"
 }
 
 ###
 
-//Uppdate one user /api/users/_id-number
-PUT http://localhost:3000/api/5ebaa49218747737807f537b HTTP/1.1
+
+//När man loggar in ska det finnas en Set-Cookie i response n*******
+//Add a user -------- /api/users
+POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
- 
-    "user": "Elaine Benes",
+    "name": "Pheobe Buffe",
+    "password": "smelly cat"
 }
 
 ###
 
-//Delete a user /api/users/_id-number
-DELETE http://localhost:3000/api/users/5ebaa124d7897535ff07c210 HTTP/1.1
-content-type: application/json
-
-###

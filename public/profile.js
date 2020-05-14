@@ -102,19 +102,24 @@ function newQuote() {
           quote[key] = value
       }
 
+  
       fetch("http://localhost:27017/api/quotes", {
           method: "POST",
+          credentials: 'include',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(quote)
-      }).then((response) => {
-          return response.json()
-      }).then((result) => {
-          console.log(result)
-      }).catch((error) => {
-          console.error('Error', error)
+          
+        }).then((response) => {
+              return response.json()
+          }).then((result) => {
+              console.log(result)
+          }).catch((error) => {
+              console.error('Error', error)
+          })
       })
-  })
-}
+    }
 
 
 newQuote()
+
+

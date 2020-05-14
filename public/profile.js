@@ -1,4 +1,46 @@
 
+function getAllUsers() {
+  fetch("http://localhost:3000/api/users", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+
+  })
+    .then((response) => response.json())
+    .then((userModel) => {
+      console.log('success', userModel)
+    })
+    .catch((error) => {
+      console.error('Error', error)
+    })
+}
+getAllUsers()
+
+// Get all users from server
+function getAllUsers() {
+  fetch("http://localhost:3000/api/users", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+
+  })
+    .then((response) => response.json())
+    .then((userModel) => {
+      console.log('success', userModel)
+    })
+    .catch((error) => {
+      console.error('Error', error)
+    })
+}
+getAllUsers()
+
+// Show the user´s name
+  let userName = userModel
+  document.getElementById('user-name').innerHTML = userName
+
+
 let initQuoteList
 
 // Create a new list item when clicking on the "Save quotes" button
@@ -85,9 +127,11 @@ function getAllQuotes() {
       console.error('Error', error)
     })
 }
-
-
 getAllQuotes()
+
+
+
+
 
 function newQuote() {
   let myForm = document.getElementById('myQuotes')
@@ -115,6 +159,5 @@ function newQuote() {
     })
   })
 }
-
 
 newQuote()

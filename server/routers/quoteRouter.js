@@ -46,7 +46,7 @@ quoteRouter.get( '/', async function (req, res) {
     try {
      //Save quote
      const newQuote = new quoteModel({
-        content:req.body.Quote,
+        content:req.body.quote,
         user: req.body.user._id 
     }) 
         const savedQuotes = await newQuote.save()
@@ -74,7 +74,7 @@ quoteRouter.get( '/', async function (req, res) {
 // })
 
 /* secure: för att redigera en quote när user är inloggad */
-quoteRouter.put( '/:id', async function ( req, res) { 
+quoteRouter.put( '/_id', async function ( req, res) { 
     const thisUser = await thisUser.findOne({/* the user that is logged in */})
     
     const thisQuote = await Quote.findOne({ /* get the quote based on nr-key in array */})
@@ -85,7 +85,7 @@ quoteRouter.put( '/:id', async function ( req, res) {
     console.log(savedQuote)
 })
 
-quoteRouter.delete( '/:id',async function ( req, res) { 
+quoteRouter.delete( '/_id',async function ( req, res) { 
     const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
     const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})
     

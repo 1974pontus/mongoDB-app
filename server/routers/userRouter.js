@@ -49,10 +49,9 @@ userRouter.get("/_id", async (req, res) => {
   });
 
 
-//create a user
+//Login a user
 userRouter.post('/login', async (req, res) => {
   userModel.findOne({ name: req.body.name})
-  //if we found a user in database
   .then(user => {
       if (user) { 
       console.log("1")
@@ -76,6 +75,7 @@ userRouter.post('/login', async (req, res) => {
   })
 })
 
+//Register a user
 userRouter.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
   userModel.findOne({ name: req.body.name})

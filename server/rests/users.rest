@@ -13,7 +13,7 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "claudia pontus",
+    "name": "claudia pontus elli",
     "password": "1234"
 }
 

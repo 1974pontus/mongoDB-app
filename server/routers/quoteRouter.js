@@ -39,7 +39,7 @@ quoteRouter.get( '/user', async function (req, res) {
 })
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
- quoteRouter.post('/', async function ( req, res) { 
+ quoteRouter.post('/hej', async function ( req, res) { 
     const thisUser = await thisUser.findOne({/* the user that is logged in */})
     
     //Save quote
@@ -53,6 +53,36 @@ quoteRouter.get( '/user', async function (req, res) {
     thisUser.addQuote.push(savedQuotes._id)
     await thisUser.save()
 })
+
+
+//Post a new quote
+//Have too match user id with user id
+quoteRouter.post('/', async function ( req, res) {
+    quoteModel.findOne({ content: req.body.content})
+    .then(quote => {
+      console.log(quote)
+      if(!quote ) {
+          const newQuote = new newQuote({ content: req.body.content , user: req.body.user })
+           
+          newQuote.save().then(savedQuote => {
+            res.status(201).send(savedQuote)
+          } )
+          .catch(err => {
+            console.log(err)
+          })
+          console.log(newQuote)  
+      } 
+      else {
+        res.status(500).json({ message: "This quote already exist" });
+      }
+    }
+    )
+    .catch(err => {
+      console.log(err)
+    })
+  })
+
+
 
 /* secure: för att redigera en quote när user är inloggad */
 quoteRouter.put( '/:id', async function ( req, res) { 

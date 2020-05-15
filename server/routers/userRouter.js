@@ -9,6 +9,7 @@ const userRouter = express.Router()
 
 //Create and save a testUser, is connected to testQuote
 const testUser = new userModel ({
+    _id: new mongoose.Types.ObjectId(),
     name: 'George Costanza',
     password: 'Bosco!'
 })
@@ -107,7 +108,8 @@ userRouter.post('/register', async (req, res) => {
     //TODOD Create session
     console.log(user)
     if(!user ) {
-        const newUser = new userModel({ 
+        const newUser = new userModel({
+          _id: new mongoose.Types.ObjectId(), 
           name: req.body.name, 
           password: hashedPassword 
         })

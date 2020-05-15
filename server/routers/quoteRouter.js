@@ -11,7 +11,7 @@ const testQuote = new quoteModel ({
     user: {_id: "5eb970f3f870c3c976ef66d9"}
   })
  
-//GET ALL QUOTES
+//GET ALL QUOTES TO THE HOMEPAGE
 // quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */
 //     try {
 //         const allQuotes = await quoteModel.find({})
@@ -23,8 +23,9 @@ const testQuote = new quoteModel ({
 // })
 
 
-//***************SE ÖVER NÄR VI HAR INLOGG*****************
-//User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
+//***************LOGGED IN USER*****************
+
+//GET ALL QUOTES FROM THE LOGGED IN USER
 quoteRouter.get( '/', async function (req, res) { 
   console.log(req)  
   //const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ 
@@ -37,7 +38,7 @@ quoteRouter.get( '/', async function (req, res) {
 })
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
-//POST NEW QUOTE
+//POST NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
  quoteRouter.post('/', async function ( req, res) { 
      
     //const thisUser = await thisUser.findOne({/* the user that is logged in */
@@ -73,7 +74,7 @@ quoteRouter.get( '/', async function (req, res) {
 //     await thisUser.save()
 // })
 
-/* secure: för att redigera en quote när user är inloggad */
+//PUT NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
 quoteRouter.put( '/:id', async function ( req, res) { 
     const thisUser = await thisUser.findOne({/* the user that is logged in */})
     
@@ -85,6 +86,7 @@ quoteRouter.put( '/:id', async function ( req, res) {
     console.log(savedQuote)
 })
 
+//DELETE QUOTE AND CONNECT IT TO THE LOGGED IN USER
 quoteRouter.delete( '/:id',async function ( req, res) { 
     const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
     const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})

@@ -116,3 +116,13 @@ ul li {
     line-height: 1.1;
     letter-spacing: 1px;
 }
+
+
+
+/* ******************************* */
+.deleteQuoteButton {
+  text-decoration:none;
+  background-color: transparent;
+  border: none;
+}
+

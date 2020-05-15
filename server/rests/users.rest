@@ -1,52 +1,32 @@
-# //Show one users   ----/api/users/_id-number
-# GET http://localhost:3000/api/users/_id HTTP/1.1
-
-# ###
-
-# //Show all users
-# GET http://localhost:3000/api/users HTTP/1.1
-
-# ###
-
+// Tells us if the user is autherised
+//**********authenticate**********
 GET http://localhost:3000/api/users/authenticate HTTP/1.1
 
 ###
 
-//Add a user -------- /api/users
+//*********REGISTER************
 POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Ross Geller",
-    "password": "Dino"
+    "name": "Jerry Senfield",
+    "password": "queen"
 }
 
 ###
 
+//********LOGIN A USER*********
 POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Ross Geller",
-    "password": "Dino"
+    "name": "Elaine Benes",
+    "password": "queen"
 }
 
 ###
 
-
-//När man loggar in ska det finnas en Set-Cookie i response n*******
-//Add a user -------- /api/users
-POST http://localhost:3000/api/users/login HTTP/1.1
-content-type: application/json
-
-{
-    "name": "Pheobe Buffe",
-    "password": "smelly cat"
-}
-
-###
-
-
+//******LOGOUT******
 DELETE http://localhost:3000/api/users/logout HTTP/1.1
 content-type: application/json
 

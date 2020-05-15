@@ -24,13 +24,12 @@ const testQuote = new quoteModel ({
 // })
 
 
-//GET ALL QUOTES FROM THE *****LOGGED IN USER******
-//ELSE  GET ALL QUOTES TO *****HOMEPAGE******
-quoteRouter.get( '/', async function (req, res) { 
+//***************SE ÖVER NÄR VI HAR INLOGG*****************
+//User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
+quoteRouter.get( '/',requiresLogin, async function (req, res) { 
   //checks if there is a logged in user
   try {
       if(req.session.user) {
-        
         res.send({user: req.session.user.id})
         console.log("user:" + user)
       }  
@@ -39,8 +38,7 @@ quoteRouter.get( '/', async function (req, res) {
         const allQuotes = await quoteModel.find({})
         res.json({ allQuotes })
       }
-    } 
-  catch (err) {
+    } catch (err) {
     res.status(500).json({ message: err.message })
   }
 })
@@ -87,8 +85,7 @@ quoteRouter.get( '/', async function (req, res) {
 
 //Post a new quote
 //Have too match user id with user id
-quoteRouter.post('/', async function ( req, res) {
-    userModel.findOne({ user: req.body.user})
+quoteRouter.post('/', requiresLogin, async function ( req, res) {
     quoteModel.findOne({ content: req.body.content})
     .then(quote => {
       console.log(quote)
@@ -129,8 +126,7 @@ quoteRouter.put( '/:id', async function ( req, res) {
 
 //DELETE QUOTE AND CONNECT IT TO THE LOGGED IN USER
 quoteRouter.delete( '/:id', requiresLogin, async function ( req, res) { 
-  //om quoten tillhör rätt user fortsätt med koden annars (401)
-
+    //om quoten tillhör rätt user fortsätt med koden annars (401)
     const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
     const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})
     

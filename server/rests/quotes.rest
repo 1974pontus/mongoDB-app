@@ -17,12 +17,12 @@ POST http://localhost:3000/api/quotes HTTP/1.1
 content-type: application/json
 
 {
-    "content": "this is a new quote2"
+    "content": "helloooo jerry"
 }
 
 ###
 
-//Uppdate one quote /api/quotes/_id-number
+//Uppdate one quote /api/quotes/_id-number ✅
 PUT http://localhost:3000/api/quotes/5ebe938252f6c51cb9b32835 HTTP/1.1
 content-type: application/json
 
@@ -32,7 +32,7 @@ content-type: application/json
 
 ###
 
-//Delete a quote /api/quotes/_id-number
+//Delete a quote /api/quotes/_id-number ✅
 DELETE http://localhost:3000/api/quotes/5ebeb1c8a0e5b76643625203 HTTP/1.1
 content-type: application/json
 

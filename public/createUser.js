@@ -51,3 +51,45 @@ function login() {
 // 1. use the get call and se with user that is logged in. 
 // 2. try to get all the diffrent CRUDs for quotes to work, in small steps. 
 // ----> !!Check ms -bookshelf for help! 
+
+class RequestGet {
+  async get(url) {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
+    const data = await response.json();
+    return data;
+  }
+}
+
+function getQuotes() {
+  const req = new RequestGet();
+  req.get('http://localhost:3000/api/quotes')
+    .then(quotes => {
+      console.log('VISA ALLA QUOTS PÅ INDEX_SIDAN PLZ❤️')
+      printQuotes(quotes)
+    })
+    .catch(err => console.log(err));
+}
+getQuotes()
+
+
+//Rendering all quotes
+function printQuotes(quotes) {
+  const row = document.querySelector('#showAllQuoteList')
+  quotes.forEach(quote => {
+    const item = createQuoteItem(quote)
+    row.prepend(item)
+  });
+}
+// // Create a new list item when clicking on the "Save quotes" button
+function createQuoteItem(quote) {
+  
+  const li = document.createElement("li");
+  li.innerText = quote.content
+
+  return li
+}

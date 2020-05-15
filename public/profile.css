@@ -126,3 +126,6 @@ ul li {
   border: none;
 }
 
+.profile-body li{
+  list-style: none;
+}

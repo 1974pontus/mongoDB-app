@@ -1,3 +1,4 @@
+//***********POST*********************
 
 class RequestPost {
   post(url, data) {
@@ -44,13 +45,7 @@ function login() {
     .catch(err => console.log(err))
 }
 
-
-
-//NEXT STEP. 
-//Work on the quotelist.js
-// 1. use the get call and se with user that is logged in. 
-// 2. try to get all the diffrent CRUDs for quotes to work, in small steps. 
-// ----> !!Check ms -bookshelf for help! 
+//***********GET******************** */
 
 class RequestGet {
   async get(url) {

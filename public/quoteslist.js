@@ -6,7 +6,6 @@ function getAllUsers() {
     headers: {
       'Content-Type': 'application/json',
     },
-
   })
     .then((response) => response.json())
     .then((userModel) => {
@@ -28,6 +27,7 @@ let initQuoteList
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {
   event.preventDefault()
+  
   const li = document.createElement("li");
   let inputValue = document.getElementById("myQuotes").value;
   let t = document.createTextNode(inputValue);

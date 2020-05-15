@@ -1,8 +1,16 @@
 //The general GET request (all quotes)
 class RequestGet {
   async get(url) {
-    const response = await fetch(url);
-    const data = response.json();
+    const response = await fetch(url, {
+      method: 'GET',
+      credentials: 'include',
+      crossDomain: true,
+      body: JSON.stringify(),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
+    const data = await response.json();
     return data;
   }
 }
@@ -10,7 +18,7 @@ class RequestGet {
 //LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
-  req.get('http://localhost:3000/api/quotes/logedinUser')
+  req.get('http://localhost:3000/api/quotes')
     .then(data => {
       printQuotes(data), console.log('jakten på quotes', data)
     })
@@ -74,7 +82,7 @@ let printQuotes = (data) => {
 
 
 // Create a new list item when clicking on the "Save quotes" button
-function quoteSaver() {
+function quoteSaver(event) {
   event.preventDefault()
   
   const li = document.createElement("li");

@@ -108,7 +108,6 @@ userRouter.post('/register', async (req, res) => {
     console.log(user)
     if(!user ) {
         const newUser = new userModel({
-          _id: new mongoose.Types.ObjectId(), 
           name: req.body.name, 
           password: hashedPassword 
         })

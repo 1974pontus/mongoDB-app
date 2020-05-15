@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 3000
 //all incoming data parses to json
 app.use(express.json())
 
+//Express hosting the public-files /client side
+app.use(express.static('../public'))
 
 //specar olika proj (frontend http)
 app.use(cors({

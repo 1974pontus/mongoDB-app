@@ -36,7 +36,6 @@ app.get('/users', secureRouteWithRole('admin'), (req, res) => {
 // Register a new user
 app.post('/users', async (req, res) => {
  const hashedPassword = await bcrypt.hash(req.body.password, 10)
- //this is how he haved saved the user
  users.push({
  name: req.body.name,
  password: hashedPassword
@@ -47,8 +46,7 @@ app.post('/users', async (req, res) => {
 // Attemp to login a user
 app.post('/login', async (req, res) => {
  // Check if username & password is correct
-
- const user = userModel.findOne(user => user.name === req.body.name)
+ const user = users.find(user => user.name === req.body.name)
  if (!user || !await bcrypt.compare(req.body.password, user.password)) {
  return res.status(401).json('Wrong username or password')
  }
@@ -59,9 +57,9 @@ app.post('/login', async (req, res) => {
  }
  
  // Create session
-/*  req.session.username = user.name
+ req.session.username = user.name
  req.session.role = 'admin'
-  */
+ 
  // Send a response
  res.send('Succesful login')
 })
@@ -101,27 +99,6 @@ function secureRouteWithRole(role) {
  next()
  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

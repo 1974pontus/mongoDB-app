@@ -15,7 +15,7 @@ class RequestGet {
 //LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
-  req.get('http://localhost:3000/api/quotes')
+  req.get('http://localhost:3000/api/quotes/loggedInUser')
     .then(quotes => {
       console.log('jakten på quotes', quotes)
       printQuotes(quotes)
@@ -78,36 +78,37 @@ function printQuotes(quotes) {
 
 
 
-
 // // Create a new list item when clicking on the "Save quotes" button
 function createQuoteItem(quote) {
-  
   const li = document.createElement("li");
   li.innerText = quote.content
+  const button = document.createElement('button')
+  button.innerHTML = `<button onclick="deleteQuote(event)">❌</button>`
+  button.setAttribute("data-id", quote.id)
+  li.appendChild(button)
 
   return li
-
-  // li.appendChild(t);
-  // if (inputValue === '') {
-  //   alert("You must write something!");
-  // } else {
-  //   document.getElementById("quoteList").appendChild(li);
-  // }
-  // document.getElementById("myQuotes").value = "";
-
-  // let span = document.createElement("SPAN");
-  // let txt = document.createTextNode("\u00D7");
-  // span.className = "close";
-  // span.appendChild(txt);
-  // li.appendChild(span);
-
-  // for (i = 0; i < close.length; i++) {
-  //   close[i].onclick = function () {
-  //     let div = this.parentElement;
-  //     div.style.display = "none";
-  //   }
-  // }
 }
+
+class RequestDelete {
+    async  delete(url) {
+      const response = await fetch(url, {
+        method: 'DELETE',
+      });
+      return "Delete successful";
+    }
+  }
+function deleteQuote(event) {
+  console.log(event.target) 
+  const req = new RequestDelete();
+  req.delete('http://localhost:3000/api/quotes/:id')
+    .then(quotes => {
+      console.log('Snälla radera denna')
+    })
+    .catch(err => console.log(err));
+}
+
+
 
 // // Create a "close" button and append it to each list item
 // var myNodelist = document.getElementsByTagName("li");

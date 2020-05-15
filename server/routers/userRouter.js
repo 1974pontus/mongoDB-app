@@ -9,6 +9,7 @@ const userRouter = express.Router()
 
 //Create and save a testUser, is connected to testQuote
 const testUser = new userModel ({
+    _id: new mongoose.Types.ObjectId(),
     name: 'George Costanza',
     password: 'Bosco!'
 })
@@ -52,7 +53,7 @@ const testUser = new userModel ({
         res.status(500).json({ message: err.message })
       }
     })
-      //return res.status(401).json('Oh no 👻This is not your account pleace login again')
+    
 
 // GET ALL USERS 
 userRouter.get('/', async ( req, res) => {/* hämta en användare från databasen och när en användare har loggat in på sin sida*/
@@ -100,14 +101,15 @@ userRouter.post('/login', async (req, res) => {
 
 //REGISTER A USER
 userRouter.post('/register', async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  const hashedPassword = await bcrypt.hash(req.body.password || req.body.name, 10)
   userModel.findOne({ name: req.body.name})
   .then(user => {
 
     //TODOD Create session
     console.log(user)
     if(!user ) {
-        const newUser = new userModel({ 
+        const newUser = new userModel({
+          _id: new mongoose.Types.ObjectId(), 
           name: req.body.name, 
           password: hashedPassword 
         })
@@ -121,8 +123,8 @@ userRouter.post('/register', async (req, res) => {
         console.log(newUser)
         
     } else {
-      res.status(500).json({ message: "🤔Are you chore you have the right username or password" });
-      }
+      res.status(500).json({ message: "😎Sorry, this awsome username is already taken" });
+      } //"🤔Are you chore you have the right username or password"
     }
   )
   .catch(err => {
@@ -137,7 +139,7 @@ userRouter.post('/register', async (req, res) => {
 userRouter.delete("/logout",( req, res, next ) => { /* ?? behöver vi denna, ta bort en användare i databasen, ingår inte i uppgiften ?? */
     console.log("********SERENITY NOW!!!!!! AGAIN!!!!!!!!!")
     req.session = null
-    res.send('🙌Done & Done u are logged out')
+    res.send('👋Thanx for the visit your now LOGGED OUT out 🏝')
 })
 
 module.exports = userRouter

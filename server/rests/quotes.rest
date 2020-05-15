@@ -23,11 +23,11 @@ content-type: application/json
 ###
 
 //Uppdate one quote /api/quotes/_id-number
-PUT http://localhost:3000/api/quotes/ HTTP/1.1
+PUT http://localhost:3000/api/quotes/5ebe938252f6c51cb9b32835 HTTP/1.1
 content-type: application/json
 
 {
-    "quote": "I'll go if I don't have to walk",
+    "content": "I'll go if I don't have to walk222"
 }
 
 ###

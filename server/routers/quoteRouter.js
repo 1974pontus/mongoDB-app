@@ -1,13 +1,13 @@
 //Denna router middleware är för  quote resursen/modellen och innehåller alla endpoints som den behöver
 //Koppling mellan app-resurs-dess endpoints(CRUD)
 const express = require('express')
-const quoteModel = require('../models/quote')
+const QuoteModel = require('../models/quote')
 const quoteRouter = express.Router()
 const cookieSession = require('cookie-session')
 const {requiresLogin} = require('../auth')
 
 //Create and save a testQuote, is connected to testUser
-const testQuote = new quoteModel ({
+const testQuote = new QuoteModel ({
     content: 'If she can not find me, she can not break up with me.',
     user: {_id: "5eb970f3f870c3c976ef66d9"}
   })
@@ -17,7 +17,7 @@ const testQuote = new quoteModel ({
 quoteRouter.get( '/', async function (req, res) { 
   //checks if there is a logged in user
   try {
-      const allQuotes = await quoteModel.find({})
+      const allQuotes = await QuoteModel.find({})
       res.json( allQuotes )
     } catch (err) {
     res.status(500).json({ message: err.message })
@@ -28,7 +28,7 @@ quoteRouter.get( '/', async function (req, res) {
 quoteRouter.get( '/loggedInUser', requiresLogin, async function (req, res) { 
   //checks if there is a logged in user
   try {
-      const allQuotes = await quoteModel.find({ user: req.session.user._id })
+      const allQuotes = await QuoteModel.find({ user: req.session.user._id })
       res.json( allQuotes )
     } catch (err) {
     res.status(500).json({ message: err.message })
@@ -38,7 +38,7 @@ quoteRouter.get( '/loggedInUser', requiresLogin, async function (req, res) {
 //POST NEW QUOTE ✅
  quoteRouter.post('/', requiresLogin, async function ( req, res) { 
      try {
-      const newQuote = new quoteModel({
+      const newQuote = new QuoteModel({
       ...req.body, //lägger till content från quotes behöver inte regleras framöver
        user: req.session.user //requiresLogin checks that user exist Middlewear
     })     
@@ -52,20 +52,29 @@ quoteRouter.get( '/loggedInUser', requiresLogin, async function (req, res) {
 
 //*********PUT************* */
 //PUT NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
-quoteRouter.put( '/:id', async function ( req, res) { 
-    const thisUser = await thisUser.findOne({/* the user that is logged in */})
-    
-    const thisQuote = await Quote.findOne({ /* get the quote based on nr-key in array */})
-    console.log(thisQuote)
-    thisQuote.content = {/* vad klient skriver in */}
+quoteRouter.put('/:id', requiresLogin, async function ( req, res) { 
+  try {
+    let quote = await QuoteModel.findOne({ _id: req.params.id })
+    if (!quote) {
+      return res.status(404).json('Quote does not exist')
+    }
+    if (quote.user == req.session.user._id) {
+      quote = new QuoteModel(Object.assign(quote, req.body))
+      await quote.save()
+      return res.json('Quote was updated successfully')
+    }
 
-    const savedQuote = await thisQuote.save()
-    console.log(savedQuote)
+    res.status(403).json('Cannot update someone elses quote')
+    
+  } catch (error) {
+    console.error(error)
+    res.status(500).json(error.message)
+  }
 })
 
 
 //DELETE QUOTE AND CONNECT IT TO THE LOGGED IN USER
-quoteRouter.delete( '/:id', requiresLogin, async function ( req, res) { 
+quoteRouter.delete('/:id', requiresLogin, async function ( req, res) { 
     //om quoten tillhör rätt user fortsätt med koden annars (401)
     const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
     const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})

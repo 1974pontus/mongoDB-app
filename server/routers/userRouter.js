@@ -77,7 +77,7 @@ userRouter.post('/login', async (req, res) => {
       // Check if user already is logged in
       if (bcrypt.compareSync(req.body.password, user.password)){
         console.log("2")
-        req.session.user = user
+        req.session.user = user //cookie skickas
        
         // Check if user already is logged in
         return res.json('🥳Succesful login 🚀')

@@ -33,6 +33,46 @@ function printQuotes(quotes) {
   });
 }
 
+
+
+class RequestPost {
+  post(url, data) {
+    let postObj = {
+      method: 'POST',
+      credentials: 'include',
+      crossDomain: true,
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    }
+    return new Promise((resolve, reject) => {
+      fetch(url, postObj)
+        .then(response => {
+          console.log('come on')
+          location.reload()
+        })
+        .catch(err => reject(err));
+    })
+  }
+}
+
+
+
+function quoteSaver() {
+  let myQuotes = document.getElementById('myQuotes')
+  console.log(myQuotes.value)
+  const request = new RequestPost()
+  request.post('http://localhost:3000/api/quotes', { content:  myQuotes.value  })
+    .then(response => {
+      console.log('anything')
+       
+
+    })
+    
+    .catch(err => console.log(err))
+}
+
 // let initQuoteList
 // let printQuotes = (data) => {
 //   if (initQuoteList) {
@@ -84,8 +124,9 @@ function createQuoteItem(quote) {
   li.innerText = quote.content
   const button = document.createElement('button')
   button.innerHTML = `<button onclick="deleteQuote(event)">❌</button>`
-  button.setAttribute("data-id", quote.id)
+  button.setAttribute("data-id", quote._id)
   li.appendChild(button)
+  console.log(quote._id)
 
   return li
 }
@@ -99,10 +140,12 @@ class RequestDelete {
     }
   }
 function deleteQuote(event) {
-  console.log(event.target) 
+  const id = event.target.parentNode.getAttribute('data-id')
+  console.log(event.target.parentNode.getAttribute('data-id')) 
   const req = new RequestDelete();
-  req.delete('http://localhost:3000/api/quotes/:id')
+  req.delete(`http://localhost:3000/api/quotes/${ id }`)
     .then(quotes => {
+     location.reload()
       console.log('Snälla radera denna')
     })
     .catch(err => console.log(err));

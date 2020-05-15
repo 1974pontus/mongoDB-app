@@ -9,7 +9,7 @@ class RequestGet {
 
 function getQuotes() {
   const req = new RequestGet();
-  req.get('http://localhost:3000/api/quotes/')
+  req.get('http://localhost:3000/api/quotes/logedinUser')
     .then(data => {
       printQuotes(data), console.log('jakten på quotes', data)
     })

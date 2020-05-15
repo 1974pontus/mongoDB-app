@@ -33,7 +33,7 @@ content-type: application/json
 ###
 
 //Delete a quote /api/quotes/_id-number
-DELETE http://localhost:3000/api/quotes/_id-number HTTP/1.1
+DELETE http://localhost:3000/api/quotes/5ebeb1c8a0e5b76643625203 HTTP/1.1
 content-type: application/json
 
 ###

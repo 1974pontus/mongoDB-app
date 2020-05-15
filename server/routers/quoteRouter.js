@@ -61,10 +61,10 @@ quoteRouter.get( '/', async function (req, res) {
  quoteRouter.post('/', requiresLogin, async function ( req, res) { 
 
      
-    //const thisUser = await thisUser.findOne({/* the user that is logged in */
+   const thisUser = await thisUser.findOne({/* the user that is logged in */
         
-    //})
-   /*  try {
+    })
+     try {
      
      const newQuote = new quoteModel({
 
@@ -82,7 +82,7 @@ quoteRouter.get( '/', async function (req, res) {
     res.status(500).send
     console.log(err)
   }
-})*/
+})
  
 
 //Post a new quote

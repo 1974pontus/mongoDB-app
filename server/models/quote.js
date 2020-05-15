@@ -18,6 +18,18 @@ const quoteSchema = new Schema({
         required: true
     }
 })
+//const quote = Quote.find({}).populate('user')
+
+// Post.find({}).populate({
+//     path: 'user',
+//     model: 'User',
+//     populate: {
+//       path: 'Quote',
+//       model: 'quote'
+//     }
+//   }).exec(callback);
+
+
 
 // exporterar kollektionen 'quote' och schemat quoteSchema
 module.exports = mongoose.model('Quote', quoteSchema)

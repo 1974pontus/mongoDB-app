@@ -63,7 +63,7 @@ quoteRouter.get( '/', async function (req, res) {
    /*  try {
      
      const newQuote = new quoteModel({
-        content:req.body.Quote,
+        content:req.body.quote,
         user: req.body.user._id 
     }) 
         const savedQuotes = await newQuote.save()

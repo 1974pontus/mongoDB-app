@@ -7,47 +7,31 @@ class RequestGet {
   }
 }
 
+//LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
   req.get('http://localhost:3000/api/quotes/')
     .then(data => {
-      printBooks(data)
+      printQuotes(data), console.log('jakten på quotes', data)
     })
     .catch(err => console.log(err));
 }
+getQuotes()
 
 //Rendering all quotes
-function printQuotes(data) {
-  const row = document.querySelector('.row')
-  data.forEach(element => {
-    const card = printSingleBook(element)
-    row.prepend(card)
-  });
-}
+// function printQuotes(data) {
+//   const row = document.querySelector('.row')
+//   data.forEach(element => {
+//     const card = printSingleBook(element)
+//     row.prepend(card)
+//   });
+// }
 
-function getUsers() {
-  const req = new RequestGet();
-  req.get('http://localhost:3000/api/users/')
-    .then(data => {
-      printUsers(data)
-    })
-    .catch(err => console.log(err));
-}
-
-//Rendering all users
-function printQuotes(data) {
-  const row = document.querySelector('.row')
-  data.forEach(element => {
-    const card = printSingleBook(element)
-    row.prepend(card)
-  });
-}
-
-
-let initListOfQuotes = (data) => {
+let initQuoteList
+let printQuotes = (data) => {
   if (initQuoteList) {
-    document.getElementById('init-quoteList').replaceWith(initQuoteList);
-    console.log('???', data)
+    document.getElementById('quoteList').replaceWith(initQuoteList);
+    console.log('1234', data)
     return;
   }
 
@@ -59,19 +43,40 @@ let initListOfQuotes = (data) => {
   });
 };
 
+// function getUsers() {
+//   const req = new RequestGet();
+//   req.get('http://localhost:3000/api/users/')
+//     .then(data => {
+//       printUsers(data)
+//     })
+//     .catch(err => console.log(err));
+// }
+
+//Rendering all users
+// function printQuotes(data) {
+//   const row = document.querySelector('.row')
+//   data.forEach(element => {
+//     const card = printSingleBook(element)
+//     row.prepend(card)
+//   });
+// }
+
+
+
 
 
 
 // Show the user´s name
-  let userName = 'Pontus Tahir'
+  let userName = 'Madonna'
   document.getElementById('user-name').innerHTML = userName
 
 
-let initQuoteList
+
 
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {
   event.preventDefault()
+  
   const li = document.createElement("li");
   let inputValue = document.getElementById("myQuotes").value;
   let t = document.createTextNode(inputValue);

@@ -38,6 +38,7 @@ const testUser = new userModel ({
       }
     })
 
+    //check if you are logged in
     userRouter.get("/authenticate", async (req, res) => {
       try {
           if(req.session.user) {
@@ -69,7 +70,6 @@ userRouter.get('/', async ( req, res) => {/* hämta en användare från database
 userRouter.post('/login', async (req, res) => {
   console.log('LoGGED IN USER*************', req.session.user)
   userModel.findOne({ name: req.body.name})
-  //if we found a user in database
   .then(user => {
       if (user) { 
       console.log("1")
@@ -97,7 +97,8 @@ userRouter.post('/login', async (req, res) => {
     })
 })
 
-//CREATE A USER
+
+//REGISTER A USER
 userRouter.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password || req.body.name, 10)
   userModel.findOne({ name: req.body.name})

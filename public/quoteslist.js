@@ -7,11 +7,12 @@ class RequestGet {
   }
 }
 
+//LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
   req.get('http://localhost:3000/api/quotes/')
     .then(data => {
-      printBooks(data)
+      getQuotes(data)
     })
     .catch(err => console.log(err));
 }
@@ -36,28 +37,28 @@ function getUsers() {
 
 //Rendering all users
 function printQuotes(data) {
-  const row = document.querySelector('.row')
+  const row = document.querySelector('.quotesList')
   data.forEach(element => {
     const card = printSingleBook(element)
     row.prepend(card)
   });
 }
 
+////*************test */
+// let initListOfQuotes = (data) => {
+//   if (initQuoteList) {
+//     document.getElementById('init-quoteList').replaceWith(initQuoteList);
+//     console.log('???', data)
+//     return;
+//   }
 
-let initListOfQuotes = (data) => {
-  if (initQuoteList) {
-    document.getElementById('init-quoteList').replaceWith(initQuoteList);
-    console.log('???', data)
-    return;
-  }
-
-  initQuoteList = document.getElementById('quoteList');
-  Object.keys(data).forEach((key) => {
-    const li = quoteSaver(data[key]);
-    console.log('???', li)
-    initQuoteList.appendChild(li);
-  });
-};
+//   initQuoteList = document.getElementById('quoteList');
+//   Object.keys(data).forEach((key) => {
+//     const li = quoteSaver(data[key]);
+//     console.log('???', li)
+//     initQuoteList.appendChild(li);
+//   });
+// };
 
 
 

@@ -11,110 +11,46 @@ const testQuote = new quoteModel ({
     content: 'If she can not find me, she can not break up with me.',
     user: {_id: "5eb970f3f870c3c976ef66d9"}
   })
- 
-//GET ALL QUOTES TO THE HOMEPAGE
-// quoteRouter.get( '/', async  (req, res) =>  { /* för att hämta alla quotes i databasen till första sidan */
-//     try {
-//         const allQuotes = await quoteModel.find({})
-//         res.json({ allQuotes })
-//     } catch (error) {
-//         res.status(500).json({ message: err.message });
-//         console.log(error)
-//     }
-// })
 
-
-//***************SE ÖVER NÄR VI HAR INLOGG*****************
+//******** GET ALL QUOTES */✅
 //User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
 quoteRouter.get( '/', async function (req, res) { 
   //checks if there is a logged in user
   try {
-      
-        const allQuotes = await quoteModel.find({})
-        res.json( allQuotes )
-      
+      const allQuotes = await quoteModel.find({})
+      res.json( allQuotes )
     } catch (err) {
     res.status(500).json({ message: err.message })
   }
 })
 
+//******** GET ONE USERS QUOTES */✅
 quoteRouter.get( '/loggedInUser', requiresLogin, async function (req, res) { 
   //checks if there is a logged in user
   try {
-      
-        const allQuotes = await quoteModel.find({ user: req.session.user._id })
-        res.json( allQuotes )
-      
+      const allQuotes = await quoteModel.find({ user: req.session.user._id })
+      res.json( allQuotes )
     } catch (err) {
     res.status(500).json({ message: err.message })
   }
 })
 
-  //const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ 
-    
-    
-    //})
-    // const usersQuotes = await Quote.find({ _id: thisUser._id })
-    // console.log(usersQuotes)
-   
-
-
-/* secure: för att lägga till en quote i databasen när user är inloggad*/
-
-
-//POST NEW QUOTE
+//POST NEW QUOTE ✅
  quoteRouter.post('/', requiresLogin, async function ( req, res) { 
-
-    
      try {
-     
-     const newQuote = new quoteModel({
-
+      const newQuote = new quoteModel({
       ...req.body, //lägger till content från quotes behöver inte regleras framöver
        user: req.session.user //requiresLogin checks that user exist Middlewear
-      })     
-      
+    })     
       const savedQuotes = await newQuote.save()
-       
-  
-
-    res.status(201).send(savedQuotes)
-    }
-  catch (err){
+      res.status(201).send(savedQuotes)
+    } catch (err){
     res.status(500).send
     console.log(err)
   }
 })
- 
 
-//Post a new quote
-//Have too match user id with user id
-quoteRouter.post('/', requiresLogin, async function ( req, res) {
-    quoteModel.findOne({ content: req.body.content})
-    .then(quote => {
-      console.log(quote)
-      if(!quote ) {
-          const newQuote = new newQuote({ content: req.body.content , user: req.body.user })
-           
-          newQuote.save().then(savedQuote => {
-            res.status(201).send(savedQuote)
-          } )
-          .catch(err => {
-            console.log(err)
-          })
-          console.log(newQuote)  
-      } 
-      else {
-        res.status(500).json({ message: "This quote already exist" });
-      }
-    }
-    )
-    .catch(err => {
-      console.log(err)
-    })
-  })
-
-
+//*********PUT************* */
 //PUT NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
 quoteRouter.put( '/:id', async function ( req, res) { 
     const thisUser = await thisUser.findOne({/* the user that is logged in */})

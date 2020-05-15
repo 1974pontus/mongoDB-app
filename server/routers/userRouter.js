@@ -9,7 +9,6 @@ const userRouter = express.Router()
 
 //Create and save a testUser, is connected to testQuote
 const testUser = new userModel ({
-    _id: new mongoose.Types.ObjectId(),
     name: 'George Costanza',
     password: 'Bosco!'
 })

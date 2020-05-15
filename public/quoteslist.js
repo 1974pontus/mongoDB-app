@@ -1,21 +1,66 @@
-// Get all users from server
-function getAllUsers() {
-  fetch("http://localhost:3000/api/users", {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((userModel) => {
-      console.log('success', userModel)
-    })
-    .catch((error) => {
-      console.error('Error', error)
-    })
+//The general GET request (all books)
+class RequestGet {
+  async get(url) {
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  }
 }
-getAllUsers()
+
+function getQuotes() {
+  const req = new RequestGet();
+  req.get('http://localhost:3000/api/quotes/')
+    .then(data => {
+      printBooks(data)
+    })
+    .catch(err => console.log(err));
+}
+
+//Rendering all quotes
+function printQuotes(data) {
+  const row = document.querySelector('.row')
+  data.forEach(element => {
+    const card = printSingleBook(element)
+    row.prepend(card)
+  });
+}
+
+function getUsers() {
+  const req = new RequestGet();
+  req.get('http://localhost:3000/api/users/')
+    .then(data => {
+      printUsers(data)
+    })
+    .catch(err => console.log(err));
+}
+
+//Rendering all users
+function printQuotes(data) {
+  const row = document.querySelector('.row')
+  data.forEach(element => {
+    const card = printSingleBook(element)
+    row.prepend(card)
+  });
+}
+
+
+let initListOfQuotes = (data) => {
+  if (initQuoteList) {
+    document.getElementById('init-quoteList').replaceWith(initQuoteList);
+    console.log('???', data)
+    return;
+  }
+
+  initQuoteList = document.getElementById('quoteList');
+  Object.keys(data).forEach((key) => {
+    const li = quoteSaver(data[key]);
+    console.log('???', li)
+    initQuoteList.appendChild(li);
+  });
+};
+
+
+
 
 // Show the user´s name
   let userName = 'Madonna'
@@ -77,70 +122,6 @@ for (let i = 0; i < close.length; i++) {
 }
 
 
-let initListOfQuotes = (quoteModel) => {
-  if (initQuoteList) {
-    document.getElementById('init-quoteList').replaceWith(initQuoteList);
-    console.log('???', quoteModel)
-    return;
-  }
-
-  initQuoteList = document.getElementById('init-quoteList');
-  Object.keys(quoteModel).forEach((key) => {
-    const li = quoteSaver(quoteModel[key]);
-    console.log('???', li)
-    initQuoteList.appendChild(li);
-  });
-};
-
-
-function getAllQuotes() {
-  fetch("http://localhost:3000/api/quotes", {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-
-  })
-    .then((response) => response.json())
-    .then((quoteModel) => {
-      console.log('success', quoteModel)
-      initListOfQuotes(quoteModel);
-    })
-    .catch((error) => {
-      console.error('Error', error)
-    })
-}
-getAllQuotes()
 
 
 
-function newQuote() {
-  let myForm = document.getElementById('myQuotes')
-
-  myForm.addEventListener('submit', function (e) {
-    e.preventDefault()
-    let formData = new FormData(myForm);
-
-    const quote = {}
-    for (const pair of formData.entries()) {
-      const [key, value] = pair
-      quote[key] = value
-    }
-
-    fetch("http://localhost:3000/api/quotes", {
-      method: "POST",
-      credentials: 'include',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(quote)
-    }).then((response) => {
-      return response.json()
-    }).then((result) => {
-      console.log(result)
-    }).catch((error) => {
-      console.error('Error', error)
-    })
-  })
-}
-
-newQuote()

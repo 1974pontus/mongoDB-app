@@ -83,7 +83,8 @@ function createQuoteItem(quote) {
   const li = document.createElement("li");
   li.innerText = quote.content
   const button = document.createElement('button')
-  button.innerHTML = `<button onclick="deleteQuote(event)">❌</button>`
+  button.innerHTML = `<button onclick="deleteQuote(event)">✕</button>`
+  button.className = 'deleteQuoteButton'
   button.setAttribute("data-id", quote.id)
   li.appendChild(button)
 

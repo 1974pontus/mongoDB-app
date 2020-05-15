@@ -10,22 +10,14 @@ class RequestGet {
 //LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
-  req.get('http://localhost:3000/api/quotes/logedinUser')
+  req.get('http://localhost:3000/api/quotes')
     .then(data => {
-      printQuotes(data), console.log('jakten på quotes', data)
+      printQuotes(data), console.log('jakten på quotes', req.session.data)
     })
     .catch(err => console.log(err));
 }
 getQuotes()
 
-//Rendering all quotes
-// function printQuotes(data) {
-//   const row = document.querySelector('.row')
-//   data.forEach(element => {
-//     const card = printSingleBook(element)
-//     row.prepend(card)
-//   });
-// }
 
 let initQuoteList
 let printQuotes = (data) => {

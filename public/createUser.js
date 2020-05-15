@@ -18,7 +18,7 @@ class RequestPost {
   }
 }
 
-// Create new user
+// *************CREATE NEW USER**********
 function newLoggedInUser() {
   let myName = document.getElementById('register-name')
   console.log(myName.value)
@@ -29,10 +29,8 @@ function newLoggedInUser() {
     .catch(err => console.log(err))
 }
 
+// *************LOGGIN USER**********
 
-
-
-// login user
 function login() {
   let myName = document.getElementById('login-name')
   console.log(myName.value)

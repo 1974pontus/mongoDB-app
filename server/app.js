@@ -28,7 +28,7 @@ app.use(cors({
 
 app.use(cookieSession({
     secret: 'secretKey', 
-    maxAge: 1000 * 100, // 10s **********detta bör ändras till 24 timmar*************** exempel expire: date
+    maxAge: 1000 * 600, // 10min **********detta bör ändras till 24 timmar*************** exempel expire: date
     sameSite: 'strict', //(Kakan får endast användas från samma domän som den skickades till. Så ingen kan sno kakan och använda den) 
     httpOnly: true, //(Vi får INTE nå kakan med javascript utan endas webbläsaren som kan få tillgång till kakan.
     secure: false, //(Kakan får endast lov att användas om man använder HTTPS om man sätter den till true)

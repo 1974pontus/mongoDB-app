@@ -1,4 +1,4 @@
-//The general GET request (all books)
+//The general GET request (all quotes)
 class RequestGet {
   async get(url) {
     const response = await fetch(url);
@@ -67,7 +67,7 @@ let printQuotes = (data) => {
 
 
 // Show the user´s name
-  let userName = 'Madonna'
+  let userName = 'Elaine Benes'
   document.getElementById('user-name').innerHTML = userName
 
 

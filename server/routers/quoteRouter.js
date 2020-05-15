@@ -75,9 +75,24 @@ quoteRouter.put('/:id', requiresLogin, async function ( req, res) {
 
 //DELETE QUOTE AND CONNECT IT TO THE LOGGED IN USER
 quoteRouter.delete('/:id', requiresLogin, async function ( req, res) { 
-    //om quoten tillhör rätt user fortsätt med koden annars (401)
-    const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
-    const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})
+  try {
+    let quote = await QuoteModel.findOne({ _id: req.params.id })
+    if (!quote) {
+      return res.status(404).json('Quote does not exist')
+    }
+    if (quote.user == req.session.user._id) {
+      await quote.remove()
+      return res.json('Quote was deleted successfully')
+    }
+
+    res.status(403).json('Cannot update someone elses quote')
+    
+  } catch (error) {
+    console.error(error)
+    res.status(500).json(error.message)
+  }
+
+})
     
 
 module.exports = quoteRouter 

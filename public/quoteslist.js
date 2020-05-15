@@ -12,53 +12,56 @@ function getQuotes() {
   const req = new RequestGet();
   req.get('http://localhost:3000/api/quotes/')
     .then(data => {
-      getQuotes(data)
+      printQuotes(data), console.log('jakten på quotes', data)
     })
     .catch(err => console.log(err));
 }
+getQuotes()
 
 //Rendering all quotes
-function printQuotes(data) {
-  const row = document.querySelector('.row')
-  data.forEach(element => {
-    const card = printSingleBook(element)
-    row.prepend(card)
-  });
-}
+// function printQuotes(data) {
+//   const row = document.querySelector('.row')
+//   data.forEach(element => {
+//     const card = printSingleBook(element)
+//     row.prepend(card)
+//   });
+// }
 
-function getUsers() {
-  const req = new RequestGet();
-  req.get('http://localhost:3000/api/users/')
-    .then(data => {
-      printUsers(data)
-    })
-    .catch(err => console.log(err));
-}
+let initQuoteList
+let printQuotes = (data) => {
+  if (initQuoteList) {
+    document.getElementById('quoteList').replaceWith(initQuoteList);
+    console.log('1234', data)
+    return;
+  }
+
+  initQuoteList = document.getElementById('quoteList');
+  Object.keys(data).forEach((key) => {
+    const li = quoteSaver(data[key]);
+    console.log('???', li)
+    initQuoteList.appendChild(li);
+  });
+};
+
+// function getUsers() {
+//   const req = new RequestGet();
+//   req.get('http://localhost:3000/api/users/')
+//     .then(data => {
+//       printUsers(data)
+//     })
+//     .catch(err => console.log(err));
+// }
 
 //Rendering all users
-function printQuotes(data) {
-  const row = document.querySelector('.quotesList')
-  data.forEach(element => {
-    const card = printSingleBook(element)
-    row.prepend(card)
-  });
-}
-
-////*************test */
-// let initListOfQuotes = (data) => {
-//   if (initQuoteList) {
-//     document.getElementById('init-quoteList').replaceWith(initQuoteList);
-//     console.log('???', data)
-//     return;
-//   }
-
-//   initQuoteList = document.getElementById('quoteList');
-//   Object.keys(data).forEach((key) => {
-//     const li = quoteSaver(data[key]);
-//     console.log('???', li)
-//     initQuoteList.appendChild(li);
+// function printQuotes(data) {
+//   const row = document.querySelector('.row')
+//   data.forEach(element => {
+//     const card = printSingleBook(element)
+//     row.prepend(card)
 //   });
-// };
+// }
+
+
 
 
 
@@ -68,7 +71,7 @@ function printQuotes(data) {
   document.getElementById('user-name').innerHTML = userName
 
 
-let initQuoteList
+
 
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {

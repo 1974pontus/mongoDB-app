@@ -7,6 +7,7 @@ class RequestGet {
   }
 }
 
+//LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
   req.get('http://localhost:3000/api/quotes/logedinUser')
@@ -75,6 +76,7 @@ let printQuotes = (data) => {
 // Create a new list item when clicking on the "Save quotes" button
 function quoteSaver() {
   event.preventDefault()
+  
   const li = document.createElement("li");
   let inputValue = document.getElementById("myQuotes").value;
   let t = document.createTextNode(inputValue);

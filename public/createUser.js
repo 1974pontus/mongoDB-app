@@ -39,6 +39,7 @@ function login() {
   request.post('http://localhost:3000/api/users/login', { name: myName.value, password: myPassword.value })
     .then(response => console.log(response.req.session.user), 
     //show the home button here
+
     )
     .catch(err => console.log(err))
 }

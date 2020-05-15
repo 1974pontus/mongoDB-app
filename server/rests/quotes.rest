@@ -19,7 +19,7 @@ content-type: application/json
 
 {
     "content": "hej hej hej",
-    "user": "{_id: "5eb970f3f870c3c976ef66d9"}"
+    "user": "_id: "5eb970f3f870c3c976ef66d9""
 }
 
 ###

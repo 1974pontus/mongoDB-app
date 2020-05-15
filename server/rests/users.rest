@@ -20,7 +20,7 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Elaine Benes",
+    "name": "Jerry Senfield",
     "password": "queen"
 }
 

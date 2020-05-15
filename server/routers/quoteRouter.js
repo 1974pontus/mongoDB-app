@@ -26,18 +26,25 @@ const testQuote = new quoteModel ({
 
 //***************SE ÖVER NÄR VI HAR INLOGG*****************
 //User page, /* för att hämta alla quotes som tillhör en user när den är inloggad*/
-quoteRouter.get( '/',requiresLogin, async function (req, res) { 
+quoteRouter.get( '/', async function (req, res) { 
   //checks if there is a logged in user
   try {
-      if(req.session.user) {
-        res.send({user: req.session.user.id})
-        console.log("user:" + user)
-      }  
-        //if there is no user logged in
-      else{
+      
         const allQuotes = await quoteModel.find({})
-        res.json({ allQuotes })
-      }
+        res.json( allQuotes )
+      
+    } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+quoteRouter.get( '/loggedInUser', requiresLogin, async function (req, res) { 
+  //checks if there is a logged in user
+  try {
+      
+        const allQuotes = await quoteModel.find({ user: req.session.user._id })
+        res.json( allQuotes )
+      
     } catch (err) {
     res.status(500).json({ message: err.message })
   }
@@ -58,10 +65,7 @@ quoteRouter.get( '/',requiresLogin, async function (req, res) {
 //POST NEW QUOTE
  quoteRouter.post('/', requiresLogin, async function ( req, res) { 
 
-     
-   const thisUser = await thisUser.findOne({/* the user that is logged in */
-        
-    })
+    
      try {
      
      const newQuote = new quoteModel({
@@ -69,10 +73,10 @@ quoteRouter.get( '/',requiresLogin, async function (req, res) {
       ...req.body, //lägger till content från quotes behöver inte regleras framöver
        user: req.session.user //requiresLogin checks that user exist Middlewear
       })     
-      console.log(newQuote)
+      
       const savedQuotes = await newQuote.save()
        
-    /* res.send("hej") */
+  
 
     res.status(201).send(savedQuotes)
     }

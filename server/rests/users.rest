@@ -9,8 +9,8 @@ POST http://localhost:3000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "bill",
-    "password": "bill"
+    "name": "David",
+    "password": "789"
 }
 
 ###
@@ -20,8 +20,8 @@ POST http://localhost:3000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "name": "bill",
-    "password": "bill"
+     "name": "Jerry",
+    "password": "456"
 }
 
 ###

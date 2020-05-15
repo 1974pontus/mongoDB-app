@@ -27,15 +27,31 @@ const testQuote = new quoteModel ({
 
 //GET ALL QUOTES FROM THE LOGGED IN USER
 quoteRouter.get( '/', async function (req, res) { 
-  console.log(req)  
+  //checks if there is a logged in user
+  try {
+      if(req.session.user) {
+        
+        res.send({user: req.session.user.id})
+        console.log("user:" + user)
+      }  
+        //if there is no user logged in
+      else{
+        res.send({user: false})
+      }
+    } 
+  catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
   //const thisUser = await thisUser.findOne({ /* the number of the user that is logged in */ 
     
     
     //})
     // const usersQuotes = await Quote.find({ _id: thisUser._id })
     // console.log(usersQuotes)
-    res.send(" hello")
-})
+   
+
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
 //POST NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
@@ -52,6 +68,7 @@ quoteRouter.get( '/', async function (req, res) {
     }) 
         const savedQuotes = await newQuote.save()
 
+
     /* res.send("hej") */
     res.status(201).send(savedQuotes)
     }
@@ -59,6 +76,34 @@ quoteRouter.get( '/', async function (req, res) {
     console.log(err)
   }
 })
+
+
+//Post a new quote
+//Have too match user id with user id
+quoteRouter.post('/', async function ( req, res) {
+    quoteModel.findOne({ content: req.body.content})
+    .then(quote => {
+      console.log(quote)
+      if(!quote ) {
+          const newQuote = new newQuote({ content: req.body.content , user: req.body.user })
+           
+          newQuote.save().then(savedQuote => {
+            res.status(201).send(savedQuote)
+          } )
+          .catch(err => {
+            console.log(err)
+          })
+          console.log(newQuote)  
+      } 
+      else {
+        res.status(500).json({ message: "This quote already exist" });
+      }
+    }
+    )
+    .catch(err => {
+      console.log(err)
+    })
+  })
 
 
 

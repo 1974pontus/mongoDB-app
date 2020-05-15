@@ -1,16 +1,4 @@
 
-
-// Create new user
-function newLoggedInUser() {
-  let myName = document.getElementById('register-name')
-  console.log(myName.value)
-  let myPassword = document.getElementById('register-password')
-  const request = new RequestPost()
-  request.post('http://localhost:3000/api/users/register', { name: myName.value, password: myPassword.value })
-    .then(response => console.log(response), location.reload())
-    .catch(err => console.log(err))
-}
-
 class RequestPost {
   post(url, data) {
     let postObj = {
@@ -30,7 +18,21 @@ class RequestPost {
   }
 }
 
+// Create new user
+function newLoggedInUser() {
+  let myName = document.getElementById('register-name')
+  console.log(myName.value)
+  let myPassword = document.getElementById('register-password')
+  const request = new RequestPost()
+  request.post('http://localhost:3000/api/users/register', { name: myName.value, password: myPassword.value })
+    .then(response => console.log(response))//, location.reload())
+    .catch(err => console.log(err))
+}
 
+
+
+
+// login user
 function login() {
   let myName = document.getElementById('login-name')
   console.log(myName.value)

@@ -1,4 +1,5 @@
-//The general GET request (all quotes)
+// *************GET****************
+
 class RequestGet {
   async get(url) {
     const response = await fetch(url, {
@@ -12,7 +13,6 @@ class RequestGet {
   }
 }
 
-//LOGIN - Spara användaren och dess quotes
 function getQuotes() {
   const req = new RequestGet();
   req.get('http://localhost:3000/api/quotes/loggedInUser')
@@ -33,7 +33,7 @@ function printQuotes(quotes) {
   });
 }
 
-
+// *************POST****************
 
 class RequestPost {
   post(url, data) {
@@ -57,8 +57,6 @@ class RequestPost {
   }
 }
 
-
-
 function quoteSaver() {
   let myQuotes = document.getElementById('myQuotes')
   console.log(myQuotes.value)
@@ -66,76 +64,70 @@ function quoteSaver() {
   request.post('http://localhost:3000/api/quotes', { content:  myQuotes.value  })
     .then(response => {
       console.log('anything')
-       
-
     })
-    
     .catch(err => console.log(err))
 }
 
-// let initQuoteList
-// let printQuotes = (data) => {
-//   if (initQuoteList) {
-//     document.getElementById('quoteList').replaceWith(initQuoteList);
-//     console.log('1234', data)
-//     return;
-//   }
+// *************PUT****************
 
-//   initQuoteList = document.getElementById('quoteList');
-//   Object.keys(data).forEach((key) => {
-//     const li = quoteSaver(data[key]);
-//     console.log('???', li)
-//     initQuoteList.appendChild(li);
-//   });
-// };
-
-// // function getUsers() {
-// //   const req = new RequestGet();
-// //   req.get('http://localhost:3000/api/users/')
-// //     .then(data => {
-// //       printUsers(data)
-// //     })
-// //     .catch(err => console.log(err));
-// // }
-
-// //Rendering all users
-// // function printQuotes(data) {
-// //   const row = document.querySelector('.row')
-// //   data.forEach(element => {
-// //     const card = printSingleBook(element)
-// //     row.prepend(card)
-// //   });
-// // }
-
-
-
-
-
-
-// // Show the user´s name
-//   let userName = 'Elaine Benes'
-//   document.getElementById('user-name').innerHTML = userName
-
-
-
-// // Create a new list item when clicking on the "Save quotes" button
 function createQuoteItem(quote) {
   const li = document.createElement("li");
   li.innerText = quote.content
+
   const button = document.createElement('button')
-<<<<<<< HEAD
   button.innerHTML = `<button onclick="deleteQuote(event)">✕</button>`
   button.className = 'deleteQuoteButton'
-  button.setAttribute("data-id", quote.id)
-=======
-  button.innerHTML = `<button onclick="deleteQuote(event)">❌</button>`
   button.setAttribute("data-id", quote._id)
->>>>>>> master
   li.appendChild(button)
+
+  const editButton = document.createElement('button')
+  editButton.innerHTML = `<button id="edit" onclick="editQuote(event)">✄</button>`
+  editButton.className = 'deleteQuoteButton'
+  editButton.setAttribute("data-id", quote._id)
+  li.appendChild(editButton)
+
   console.log(quote._id)
 
   return li
 }
+
+class RequestPut {
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then(response => location.reload())
+        .catch(err => reject(err));
+    })
+  }
+}
+    
+function editQuote(event) {
+  let text= event.target.parentNode.parentNode.innerText
+  let quote = prompt('update your quote plz', `${text}`)
+  if (quote != null) {
+    const id = event.target.parentNode.getAttribute('data-id')
+    console.log(event.target.parentNode) 
+    console.log(quote)
+    const req = new RequestPut
+    req.put(`http://localhost:3000/api/quotes/${ id }`, {content: quote})
+    .then(quotes => {
+     location.reload()
+      console.log('Snälla uppdatera denna citat')
+    })
+    .catch(err => console.log(err));
+  }
+  else {
+    prompt('update your quote plz')
+  }
+}
+
+// *************DELETE****************
 
 class RequestDelete {
     async  delete(url) {
@@ -157,28 +149,6 @@ function deleteQuote(event) {
     .catch(err => console.log(err));
 }
 
-
-
-// // Create a "close" button and append it to each list item
-// var myNodelist = document.getElementsByTagName("li");
-// var i;
-// for (i = 0; i < myNodelist.length; i++) {
-//   let span = document.createElement("SPAN");
-//   let txt = document.createTextNode("\u00D7");
-//   span.className = "close";
-//   span.appendChild(txt);
-//   myNodelist[i].appendChild(span);
-// }
-
-// // Click on a close button to hide the current list item
-// let close = document.getElementsByClassName("close");
-
-// for (let i = 0; i < close.length; i++) {
-//   close[i].onclick = function () {
-//     let div = this.parentElement;
-//     div.style.display = "none";
-//   }
-// }
 
 
 

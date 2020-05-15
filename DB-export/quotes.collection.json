@@ -1,0 +1,44 @@
+[
+    {
+        "_id" : ObjectId("5ebef2384196a974ee4818d5"),
+        "content" : "I don’t need you to tell me what I don’t want, you stupid hipster doofus.",
+        "user" : ObjectId("5ebef2114196a974ee4818d4"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef24c4196a974ee4818d6"),
+        "content" : "I’m Queen of the castle.",
+        "user" : ObjectId("5ebef2114196a974ee4818d4"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef25e4196a974ee4818d7"),
+        "content" : "Yada yada yada.",
+        "user" : ObjectId("5ebef2114196a974ee4818d4"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef2704196a974ee4818d8"),
+        "content" : "Maybe the dingo ate your baby!",
+        "user" : ObjectId("5ebef2114196a974ee4818d4"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef2c64196a974ee4818da"),
+        "content" : "There is no such thing as fun for the whole family.",
+        "user" : ObjectId("5ebef2ab4196a974ee4818d9"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef2d94196a974ee4818db"),
+        "content" : "Pay attention, don't let life go by you. Fall in love with the back of your cereal box.",
+        "user" : ObjectId("5ebef2ab4196a974ee4818d9"),
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef3444196a974ee4818dc"),
+        "content" : "A two-year-old is kind of like having a blender, but you don't have a top for it.",
+        "user" : ObjectId("5ebef2ab4196a974ee4818d9"),
+        "__v" : 0
+    }
+]

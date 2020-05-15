@@ -1,0 +1,16 @@
+[
+    {
+        "_id" : ObjectId("5ebef2114196a974ee4818d4"),
+        "name" : "Elaine",
+        "password" : "$2b$10$//18ZeAczgIzZt1YV/S2WOJY3y9.gzAf5Ts8zoJlWHJIgyFD3PJ6S",
+        "__v" : 0
+    },
+    {
+        "_id" : ObjectId("5ebef2ab4196a974ee4818d9"),
+        "name" : "Jerry",
+        "password" : "$2b$10$gXmxQEicH2tgnK4uMJLluuaFUGWJJqbVZQ5jdigFkSyeg5GnXD6Uq",
+        "__v" : 0
+    }
+]
+
+

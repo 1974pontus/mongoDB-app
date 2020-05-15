@@ -17,9 +17,6 @@ const PORT = process.env.PORT || 3000
 //all incoming data parses to json
 app.use(express.json())
 
-//Express hosting the public-files /client side
-app.use(express.static('../public'))
-
 //specar olika proj (frontend http)
 app.use(cors({
     credentials: true,
@@ -32,7 +29,20 @@ app.use(cookieSession({
     sameSite: 'strict', //(Kakan får endast användas från samma domän som den skickades till. Så ingen kan sno kakan och använda den) 
     httpOnly: true, //(Vi får INTE nå kakan med javascript utan endas webbläsaren som kan få tillgång till kakan.
     secure: false, //(Kakan får endast lov att användas om man använder HTTPS om man sätter den till true)
-   }))
+}))
+
+
+app.get('/profile.html', (req, res, next) => {
+    if (req.session.user) {
+        next()
+    } else {
+        res.status(300).redirect('/');
+    }
+})
+
+//Express hosting the public-files /client side
+app.use(express.static('../public'))
+
 
 //use routers
 app.use('/api/users', userRouter)
@@ -43,7 +53,7 @@ app.use('/api/quotes', quoteRouter)
 // 404 middleware
 app.use((req, res) => {
    res.status(404).json('Resourse could not be found')
-})  
+}) 
 
 app.listen(PORT, () => {
     console.log(`app is listening to PORT ${PORT}`)

@@ -4,6 +4,7 @@ const express = require('express')
 const quoteModel = require('../models/quote')
 const quoteRouter = express.Router()
 const cookieSession = require('cookie-session')
+const {requiresLogin} = require('../auth')
 
 //Create and save a testQuote, is connected to testUser
 const testQuote = new quoteModel ({
@@ -54,8 +55,11 @@ quoteRouter.get( '/', async function (req, res) {
 
 
 /* secure: för att lägga till en quote i databasen när user är inloggad*/
-//POST NEW QUOTE AND CONNECT IT TO THE LOGGED IN USER
- quoteRouter.post('/', async function ( req, res) { 
+
+
+//POST NEW QUOTE
+ quoteRouter.post('/', requiresLogin, async function ( req, res) { 
+
      
     //const thisUser = await thisUser.findOne({/* the user that is logged in */
         
@@ -63,16 +67,19 @@ quoteRouter.get( '/', async function (req, res) {
    /*  try {
      
      const newQuote = new quoteModel({
-        content:req.body.quote,
-        user: req.body.user._id 
-    }) 
-        const savedQuotes = await newQuote.save()
 
+      ...req.body, //lägger till content från quotes behöver inte regleras framöver
+       user: req.session.user //requiresLogin checks that user exist Middlewear
+      })     
+      console.log(newQuote)
+      const savedQuotes = await newQuote.save()
+       
+    /* res.send("hej") */
 
-    /* res.send("hej") 
     res.status(201).send(savedQuotes)
     }
   catch (err){
+    res.status(500).send
     console.log(err)
   }
 })*/
@@ -119,8 +126,11 @@ quoteRouter.put( '/:id', async function ( req, res) {
     console.log(savedQuote)
 })
 
+
 //DELETE QUOTE AND CONNECT IT TO THE LOGGED IN USER
-quoteRouter.delete( '/:id',async function ( req, res) { 
+quoteRouter.delete( '/:id', requiresLogin, async function ( req, res) { 
+  //om quoten tillhör rätt user fortsätt med koden annars (401)
+
     const thisQuote = await Quote.findOne({/* get the quote based on nr-key in array */ })
     const deletedQuote = await thisQuote.remove()/* secure: för att ta bort en quote när user är inloggad*/})
     
